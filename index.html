@@ -2,48 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Ferretería Lescano | Tu aliado en la construcción</title>
+  <title>Ferretería Lescano | Catálogo y cotización en línea</title>
 
-  <!-- Vista previa para redes sociales (Open Graph) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Ferretería Lescano | Tu aliado en la construcción">
-  <meta property="og:description" content="Materiales de construcción, herramientas y recompensas por tus compras.">
-  <meta property="og:image" content="https://tusitio.com/img/preview-ferreteria.jpg">
-  <meta property="og:url" content="https://tusitio.com/">
-  <meta property="og:site_name" content="Ferretería Lescano">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Ferretería Lescano: materiales de construcción, herramientas y acabados con recompensas por tus compras." />
 
-  <!-- Vista previa en WhatsApp / Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://tusitio.com/img/preview-ferreteria.jpg">
-  <meta name="twitter:title" content="Ferretería Lescano | Tu aliado en la construcción">
-  <meta name="twitter:description" content="Todo para tu obra en un solo lugar, con recompensas por tus compras.">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Landing page de presentación de Ferretería Lescano, tu aliado en la construcción y remodelación."
-  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Fuentes -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg: #fffdf5;
-      --bg-alt: #ffffff;
-      --primary: #f8c013;   /* Amarillo Lescano */
+      --primary: #f8c013;
       --primary-soft: #fff3cd;
-      --accent: #fb8001;    /* Naranja Lescano */
-      --text: #111111;      /* Negro */
+      --secondary: #fb8001;
+      --bg: #fffdf5;
+      --text: #111111;
       --muted: #6b7280;
       --border: #f2e4b5;
+      --radius-lg: 16px;
       --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.06);
-      --radius-lg: 18px;
-      --transition-fast: 180ms ease-out;
+      --transition-fast: 160ms ease-out;
     }
 
     * {
@@ -70,57 +49,77 @@
       text-decoration: none;
     }
 
+    /* CONTENEDOR PRINCIPAL */
+
     .page {
-      max-width: 1040px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 20px 16px 48px;
+      padding: 16px 16px 48px;
     }
 
-    /* HEADER */
+    /* HEADER: estilo e-commerce */
 
     header {
-      display: flex;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1.4fr) auto;
+      gap: 12px;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
     }
 
     .header-logo {
       display: flex;
       align-items: center;
-      flex-shrink: 0;
       gap: 10px;
     }
 
     .header-logo img {
-      height: 80px; /* cuando tengas tu logo lo reemplazas aquí */
-      max-width: 100%;
+      height: 64px;
       object-fit: contain;
     }
 
     .header-logo span {
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
     }
 
-    nav {
+    .header-search {
+      position: relative;
+    }
+
+    .header-search input {
+      width: 100%;
+      padding: 9px 14px 9px 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.88rem;
+      outline: none;
+      background: #ffffff;
+    }
+
+    .header-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .header-actions {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
       align-items: center;
-      flex: 1;
+      gap: 10px;
+      justify-content: flex-end;
     }
 
     .nav-link {
-      padding: 6px 14px;
+      font-size: 0.84rem;
+      padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid transparent;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: transparent;
       cursor: pointer;
+      color: var(--muted);
       transition: background var(--transition-fast), border var(--transition-fast),
         color var(--transition-fast), transform var(--transition-fast);
     }
@@ -133,11 +132,9 @@
     }
 
     .nav-link.primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #ffffff;
-      border-color: transparent;
-      font-weight: 500;
-      box-shadow: 0 10px 30px rgba(251, 128, 1, 0.45);
+      box-shadow: 0 12px 32px rgba(251, 128, 1, 0.5);
     }
 
     .nav-link.primary:hover {
@@ -145,84 +142,30 @@
       transform: translateY(-1px);
     }
 
-    /* Botón burbuja WhatsApp en cabecera */
-
-    .whatsapp-bubble {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #fde68a, #16a34a);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6);
-      animation: whatsapp-pulse 1.4s infinite;
-      cursor: pointer;
-      text-decoration: none;
-      border: none;
-      padding: 6px;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .whatsapp-bubble-icon {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-    }
-
-    @keyframes whatsapp-pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6);
-      }
-      100% {
-        transform: scale(1.08);
-        box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
-      }
-    }
-
-    /* 🛒 BOTÓN CARRITO FLOTANTE EN INDEX */
-
-    .cart-button {
-      position: fixed;
-      bottom: 20px;
-      right: 16px;
-      z-index: 9999;
+    .cart-mini {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 9px 14px;
+      padding: 7px 12px;
       border-radius: 999px;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff;
+      border: 1px solid #fed7aa;
+      background: #fff7ed;
+      font-size: 0.82rem;
       cursor: pointer;
-      font-size: 0.9rem;
-      box-shadow: 0 12px 28px rgba(251, 128, 1, 0.55);
-      transition: 0.18s ease-out;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
 
-    .cart-button:hover {
-      filter: brightness(1.05);
-      transform: translateY(-2px);
+    .cart-mini:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(251, 146, 60, 0.4);
     }
 
-    .cart-icon {
-      font-size: 1rem;
-    }
-
-    .cart-amount {
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    .cart-count {
+    .cart-mini-count {
       min-width: 18px;
       height: 18px;
       border-radius: 999px;
-      background: #fff;
-      color: var(--accent);
+      background: #ffffff;
+      color: var(--secondary);
       font-size: 0.7rem;
       display: flex;
       align-items: center;
@@ -230,316 +173,666 @@
       font-weight: 600;
     }
 
-    /* HERO */
+    /* BOTÓN FLOTANTE CARRITO */
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 24px;
-      margin-bottom: 32px;
+    .cart-button-fab {
+      position: fixed;
+      right: 14px;
+      bottom: 18px;
+      display: inline-flex;
       align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      font-size: 0.9rem;
+      box-shadow: 0 14px 32px rgba(251, 128, 1, 0.7);
+      z-index: 9999;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .cart-button-fab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(251, 128, 1, 0.8);
+    }
+
+    .cart-button-fab .cart-mini-count {
+      background: #ffffff;
+      color: var(--secondary);
+    }
+
+    /* HERO TOP (texto corto encima del slider) */
+
+    .hero-top {
+      margin: 8px 0 10px;
     }
 
     .hero-kicker {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .hero-title {
-      font-size: clamp(2rem, 2.5vw + 1rem, 2.6rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
-    .hero-title span.highlight {
-      background: linear-gradient(120deg, var(--primary), var(--accent));
+    .hero-title span {
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .hero-subtitle {
-      font-size: 0.98rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-      max-width: 620px;
+    /* SLIDER FULL WIDTH */
+
+    .slider-section {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      margin-bottom: 20px;
     }
 
-    .hero-extra {
-      font-size: 0.94rem;
-      color: var(--muted);
-      margin-bottom: 14px;
-      max-width: 620px;
+    .slider-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 6px 16px 0;
     }
 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
-    }
-
-    .tag {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #facc15;
-      font-size: 0.78rem;
-      color: #92400e;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 0.9rem;
-      cursor: pointer;
-      background: #ffffff;
-      color: var(--text);
-      transition: background var(--transition-fast), border var(--transition-fast),
-        transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #ffffff;
-      border-color: transparent;
-      font-weight: 500;
-      box-shadow: 0 12px 32px rgba(251, 128, 1, 0.55);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-      box-shadow: 0 18px 40px rgba(251, 128, 1, 0.6);
-    }
-
-    .btn-outline {
-      border-color: #facc15;
-      background: #fff;
-      color: #92400e;
-    }
-
-    .btn-outline:hover {
-      background: #fff7db;
-      transform: translateY(-1px);
-    }
-
-    .hero-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    /* BANNER / SLIDER DERECHA */
-
-    .hero-photo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .banner-slider {
-      width: 100%;
-      max-width: 380px;
-      border-radius: 24px;
-      border: 6px solid #ffffff;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-      overflow: hidden;
+    .slider-frame {
       position: relative;
-      background: #111827;
+      border-radius: 18px;
+      overflow: hidden;
       height: 260px;
-      color: #fff;
+      background: #111827;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.6);
     }
 
-    .banner-slide {
+    .slide {
       position: absolute;
       inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
       background-size: cover;
       background-position: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
       display: flex;
       align-items: flex-end;
+      color: #ffffff;
     }
 
-    .banner-slide.active {
+    .slide.active {
       opacity: 1;
     }
 
-    .banner-overlay {
+    .slide-overlay {
       width: 100%;
-      padding: 14px;
-      background: linear-gradient(to top, rgba(17, 24, 39, 0.9), transparent);
-      font-size: 0.88rem;
+      padding: 16px;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.88), transparent);
+      font-size: 0.9rem;
     }
 
-    .banner-overlay h3 {
+    .slide-overlay h3 {
+      font-size: 1.1rem;
       margin-bottom: 4px;
-      font-size: 1rem;
     }
 
-    .banner-dots {
+    .slide-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #fbbf24;
+      color: #92400e;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+    }
+
+    .slider-dots {
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       right: 14px;
       display: flex;
       gap: 4px;
     }
 
-    .banner-dot {
+    .slider-dot {
       width: 8px;
       height: 8px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
+      transition: width 0.2s ease, background 0.2s ease;
     }
 
-    .banner-dot.active {
+    .slider-dot.active {
       width: 16px;
       background: #facc15;
     }
 
-    /* SECCIONES GENERALES */
+    /* LAYOUT GENERAL: SIDEBAR FILTROS + CATÁLOGO (similar metro) */
 
-    section {
-      margin-top: 42px;
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 6px;
     }
 
-    .section-header {
-      margin-bottom: 16px;
+    /* SIDEBAR / FILTROS */
+
+    .sidebar {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      padding: 14px 14px 12px;
+      font-size: 0.88rem;
     }
 
-    .section-kicker {
-      font-size: 0.78rem;
+    .sidebar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .filter-group {
+      margin-bottom: 12px;
+      border-top: 1px solid #fef3c7;
+      padding-top: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
       margin-bottom: 4px;
     }
 
-    .section-title {
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: var(--muted);
+      cursor: pointer;
+      transition: background var(--transition-fast), border var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .chip.active {
+      background: var(--primary-soft);
+      border-color: #facc15;
+      color: #92400e;
+      transform: translateY(-1px);
+    }
+
+    .filter-range {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .filter-range input {
+      width: 100%;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+
+    .sidebar-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* CONTENIDO (CATÁLOGO) */
+
+    .content-header {
+      margin-bottom: 10px;
+    }
+
+    .content-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .content-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .content-title-row h1 {
       font-size: 1.2rem;
       font-weight: 600;
+    }
+
+    .content-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 12px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar-right {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      background: #fef3c7;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: #92400e;
+    }
+
+    .toolbar-right select {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+
+    .toolbar-search {
+      position: relative;
+      min-width: 180px;
+    }
+
+    .toolbar-search input {
+      padding: 4px 22px 4px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      width: 100%;
+    }
+
+    .toolbar-search span {
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* GRID DE PRODUCTOS */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (max-width: 1000px) {
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid #f4f4f5;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.035);
+      padding: 10px 10px 9px;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.86rem;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(250, 204, 21, 0.18);
+      border-color: #facc15;
+    }
+
+    .product-image {
+      width: 100%;
+      padding-top: 70%;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 6px;
+      background-color: #f3f4f6;
+    }
+
+    .product-name {
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .product-category {
+      font-size: 0.78rem;
+      color: var(--muted);
       margin-bottom: 4px;
     }
 
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 620px;
-    }
-
-    /* GRID / CARDS */
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      padding: 16px 16px 14px;
-      box-shadow: var(--shadow-soft);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-        border var(--transition-fast);
-      font-size: 0.9rem;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: #facc15;
-      box-shadow: 0 20px 40px rgba(251, 191, 36, 0.25);
-    }
-
-    .card-title {
-      font-weight: 600;
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
       margin-bottom: 6px;
-      font-size: 0.98rem;
+      gap: 6px;
     }
 
-    .card p {
-      color: var(--muted);
+    .product-price {
+      font-weight: 700;
+      color: #b45309;
+    }
+
+    .product-badge {
+      font-size: 0.72rem;
+      background: #fee2e2;
+      color: #b91c1c;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .product-cta {
+      margin-top: auto;
+    }
+
+    .btn-add {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid #fed7aa;
+      background: linear-gradient(135deg, #fffbeb, #fff7ed);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: #92400e;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        background var(--transition-fast), border var(--transition-fast);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(251, 191, 36, 0.25);
+      border-color: #fbbf24;
+      background: linear-gradient(135deg, #fef3c7, #ffedd5);
+    }
+
+    /* ✨ ANIMACIÓN AL HACER CLIC EN "AGREGAR" */
+
+    .btn-add-pulse {
+      animation: btn-pulse 0.22s ease-out;
+    }
+
+    @keyframes btn-pulse {
+      0% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(0.96);
+      }
+      100% {
+        transform: scale(1.04);
+      }
+    }
+
+    .btn-add::after {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(248, 192, 19, 0.5);
+      opacity: 0;
+      transform: scale(1);
+      pointer-events: none;
+    }
+
+    .btn-add-ripple::after {
+      animation: ripple 0.3s ease-out;
+    }
+
+    @keyframes ripple {
+      0% {
+        opacity: 0.45;
+        transform: scale(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(3);
+      }
+    }
+
+    .product-added-label {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.74rem;
+      background: rgba(34, 197, 94, 0.95);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .product-added-label.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* PANEL DE CARRITO LATERAL */
+
+    .cart-panel-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      justify-content: flex-end;
+      z-index: 9998;
+    }
+
+    .cart-panel-backdrop.open {
+      display: flex;
+    }
+
+    .cart-panel {
+      width: 100%;
+      max-width: 360px;
+      background: #ffffff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 24px rgba(15, 23, 42, 0.5);
+    }
+
+    .cart-panel-header {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .cart-panel-header button {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cart-panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px 12px;
       font-size: 0.86rem;
     }
 
-    /* OFERTAS DE PRODUCTOS EN INDEX */
-
-    .offers-grid {
+    .cart-item {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: 1fr auto;
+      gap: 4px 8px;
+      padding: 6px 0;
+      border-bottom: 1px solid #f3f4f6;
     }
 
-    .offer-card {
-      background: #fff;
-      border-radius: 16px;
-      border: 1px solid #facc15;
-      padding: 12px;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+    .cart-item-title {
+      font-weight: 500;
+    }
+
+    .cart-item-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .cart-item-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      justify-self: flex-end;
+    }
+
+    .qty-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .cart-panel-footer {
+      padding: 10px 12px 12px;
+      border-top: 1px solid #e5e7eb;
       font-size: 0.88rem;
     }
 
-    .offer-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      background: #fef3c7;
-      color: #92400e;
-      padding: 2px 8px;
+    .cart-panel-footer-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .btn-wa {
+      width: 100%;
+      padding: 8px 10px;
       border-radius: 999px;
-      margin-bottom: 4px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.88rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 14px 32px rgba(22, 163, 74, 0.5);
     }
 
-    .offer-title {
-      font-weight: 600;
-      margin-bottom: 4px;
+    .btn-wa:hover {
+      filter: brightness(1.05);
     }
 
-    .offer-price {
-      font-weight: 700;
-      color: #b45309;
-      margin-bottom: 4px;
+    /* SECCIÓN TEXTO RECOMPENSAS + VIDEO + COTIZA */
+
+    .info-section {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1.4fr 1.1fr;
+      gap: 18px;
     }
 
-    .offer-cta {
-      font-size: 0.8rem;
-      color: #fb8001;
-    }
-
-    /* VIDEO / CONÓCENOS */
-
-    .video-panel {
-      background: var(--bg-alt);
+    .info-block {
+      background: #ffffff;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      padding: 0;
       box-shadow: var(--shadow-soft);
-      overflow: hidden;
-      margin-top: 12px;
+      padding: 14px 14px 10px;
+      font-size: 0.9rem;
+    }
+
+    .info-block h2 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .info-block p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .info-list {
+      padding-left: 16px;
+      margin: 6px 0;
+      font-size: 0.86rem;
+    }
+
+    .info-list li {
+      margin-bottom: 4px;
     }
 
     .video-wrapper {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
+      padding-top: 56.25%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      margin-bottom: 8px;
     }
 
     .video-wrapper iframe {
@@ -547,50 +840,108 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      border: 0;
+      border: none;
     }
 
-    /* CONTACTO */
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
 
-    .contact-card {
+    .form-group {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .form-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.84rem;
+    }
+
+    .form-textarea {
+      border-radius: 14px;
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-help {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 14px 32px rgba(251, 128, 1, 0.6);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+    }
+
+    /* CONTACTO & FOOTER */
+
+    .contact-section {
+      margin-top: 26px;
       background: #ffffff;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
-      padding: 16px;
       box-shadow: var(--shadow-soft);
+      padding: 14px;
       font-size: 0.9rem;
     }
 
     .contact-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 10px;
-      align-items: center;
+    }
+
+    .contact-col {
+      min-width: 200px;
+      flex: 1;
     }
 
     .contact-label {
-      font-size: 0.8rem;
-      color: var(--muted);
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
     }
 
     .whatsapp-number {
-      margin-top: 6px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.86rem;
       color: #166534;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .whatsapp-icon {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
+      font-weight: 600;
+      margin-top: 4px;
     }
 
     .social-links {
@@ -607,8 +958,6 @@
       font-size: 0.82rem;
       background: #fff7db;
       color: #92400e;
-      transition: background var(--transition-fast), transform var(--transition-fast),
-        box-shadow var(--transition-fast);
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -620,17 +969,11 @@
       object-fit: contain;
     }
 
-    .social-pill:hover {
-      background: #fef3c7;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(250, 204, 21, 0.3);
-    }
-
     footer {
-      margin-top: 40px;
+      margin-top: 18px;
+      padding-top: 10px;
       border-top: 1px solid #fde68a;
-      padding-top: 14px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--muted);
       display: flex;
       justify-content: space-between;
@@ -638,104 +981,44 @@
       flex-wrap: wrap;
     }
 
-    /* TABLET / MOBILE GENERAL */
+    /* RESPONSIVE */
 
-    @media (max-width: 880px) {
-      .page {
-        padding-inline: 14px;
-      }
-
+    @media (max-width: 960px) {
       header {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         align-items: flex-start;
       }
 
-      nav {
+      .header-actions {
         justify-content: flex-start;
+        flex-wrap: wrap;
       }
 
-      .hero {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .hero-photo {
-        order: -1;
-        margin-bottom: 18px;
-        display: flex;
-        justify-content: center;
-      }
-
-      .hero-photo img {
-        max-width: 95%;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .offers-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    /* MOBILE PEQUEÑO */
-
-    @media (max-width: 640px) {
-      .hero-title {
-        font-size: 1.9rem;
+    @media (max-width: 720px) {
+      .page {
+        padding-inline: 12px;
       }
 
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
+      .slider-inner {
+        padding-inline: 12px;
       }
 
-      .grid {
+      .slider-frame {
+        height: 210px;
+      }
+
+      .info-section {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .offers-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .contact-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav {
-        gap: 6px;
-      }
-
-      .nav-link {
-        font-size: 0.8rem;
-        padding-inline: 10px;
-      }
-
-      .whatsapp-bubble {
-        width: 50px !important;
-        height: 50px !important;
-        padding: 8px !important;
-        position: fixed !important;
-        top: 20px;
-        right: 12px;
-        z-index: 9999;
-      }
-
-      .whatsapp-bubble-icon {
-        width: 32px !important;
-        height: 32px !important;
-      }
-
-      header nav .whatsapp-bubble {
-        position: fixed !important;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      #contacto .section-subtitle {
-        white-space: nowrap;
+      .cart-button-fab {
+        right: 10px;
+        bottom: 14px;
       }
     }
   </style>
@@ -745,486 +1028,754 @@
     <!-- HEADER -->
     <header>
       <div class="header-logo">
-        <!-- Cuando tengas el logo, reemplaza la imagen -->
+        <!-- Reemplaza esta imagen por tu logo -->
         <img src="img/logo-ferreteria-placeholder.png" alt="Ferretería Lescano" />
         <span>Ferretería Lescano</span>
       </div>
 
-      <nav>
-        <a href="#ofertas" class="nav-link">Ofertas</a>
-        <a href="catalogo.html" class="nav-link">Catálogo</a>
-        <a href="#recompensas" class="nav-link">Recompensas</a>
-        <a href="#contacto" class="nav-link">Contacto</a>
-        <a href="#cotiza" class="nav-link primary">⚒️ Cotiza tu obra</a>
+      <div class="header-search">
+        <span class="header-search-icon">🔍</span>
+        <input
+          type="text"
+          id="globalSearch"
+          placeholder="Buscar en el catálogo (ej: cemento, taladro, pintura...)"
+        />
+      </div>
 
-        <a
-          href="https://wa.me/51987654321"
-          class="whatsapp-bubble"
-          target="_blank"
-          aria-label="Escríbenos por WhatsApp"
-        >
-          <img src="img/Logo whatsapp 2.png" alt="WhatsApp" class="whatsapp-bubble-icon" />
-        </a>
-      </nav>
+      <div class="header-actions">
+        <button class="nav-link" onclick="scrollToSection('recompensas')">Recompensas</button>
+        <button class="nav-link" onclick="scrollToSection('cotiza')">Cotiza tu obra</button>
+        <button class="nav-link" onclick="scrollToSection('contacto')">Contacto</button>
+
+        <button class="cart-mini" type="button" onclick="toggleCart(true)">
+          🛒 <span id="miniCartAmount">S/ 0.00</span>
+          <span class="cart-mini-count" id="miniCartCount">0</span>
+        </button>
+      </div>
     </header>
 
-    <!-- 🛒 BOTÓN CARRITO FLOTANTE EN INDEX (igual mecanismo que Farmasi) -->
-    <button class="cart-button" id="indexCartBtn">
-      <span class="cart-icon">🛒</span>
-      <span class="cart-amount" id="indexCartAmount">S/ 0.00</span>
-      <span class="cart-count" id="indexCartCount">0</span>
-    </button>
+    <!-- HERO TOP -->
+    <section class="hero-top">
+      <p class="hero-kicker">Ferretería · Construcción & Remodelación</p>
+      <h1 class="hero-title">
+        Tu obra con el respaldo de <span>Ferretería Lescano</span>
+      </h1>
+    </section>
+  </div>
 
-    <main>
-      <!-- HERO: TEXTO + BANNER / SLIDER -->
-      <section class="hero" id="inicio">
-        <div>
-          <p class="hero-kicker">Ferretería · Construcción & Remodelación</p>
-          <h1 class="hero-title">
-            Tu obra, con el respaldo de <span class="highlight">Ferretería Lescano</span>
-          </h1>
-          <p class="hero-subtitle">
-            Todo lo que necesitas para construir, ampliar o remodelar: materiales,
-            herramientas y asesoría para que tu proyecto avance sin parar.
-          </p>
-          <p class="hero-extra">
-            Además, con nuestro <strong>Programa de Recompensas Lescano+</strong>,
-            acumulas puntos por cada compra y los canjeas por descuentos y beneficios
-            especiales.
-          </p>
-
-          <div class="hero-tags">
-            <span class="tag">Cementos & fierros</span>
-            <span class="tag">Herramientas eléctricas</span>
-            <span class="tag">Gasfitería & electricidad</span>
-            <span class="tag">Pinturas y acabados</span>
-            <span class="tag">Asesoría para tu obra</span>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#cotiza" class="btn btn-primary">
-              ⚒️ Cotiza los materiales para tu obra
-            </a>
-            <a href="catalogo.html" class="btn btn-outline">
-              🛒 Ver catálogo completo
-            </a>
-          </div>
-
-          <p class="hero-note">
-            Cuéntanos qué vas a construir y te ayudamos a armar la lista de materiales
-            con precios actualizados.
-          </p>
-        </div>
-
-        <!-- BANNER / SLIDER (reemplaza las imágenes cuando tengas tus banners) -->
-        <aside class="hero-photo">
-          <div class="banner-slider" id="bannerSlider">
-            <div
-              class="banner-slide active"
-              style="background-image: url('img/banner-ferreteria-1.jpg');"
-            >
-              <div class="banner-overlay">
-                <h3>Combo Cemento + Fierro</h3>
-                <p>Aprovecha precios especiales para estructuras de tu obra.</p>
-              </div>
-            </div>
-            <div
-              class="banner-slide"
-              style="background-image: url('img/banner-ferreteria-2.jpg');"
-            >
-              <div class="banner-overlay">
-                <h3>Herramientas eléctricas</h3>
-                <p>Taladros, esmeriles y sierras para uso profesional.</p>
-              </div>
-            </div>
-            <div
-              class="banner-slide"
-              style="background-image: url('img/banner-ferreteria-3.jpg');"
-            >
-              <div class="banner-overlay">
-                <h3>Pinturas y acabados</h3>
-                <p>Pinta, renueva y protege tus ambientes con calidad.</p>
-              </div>
-            </div>
-
-            <div class="banner-dots" id="bannerDots">
-              <div class="banner-dot active" data-slide="0"></div>
-              <div class="banner-dot" data-slide="1"></div>
-              <div class="banner-dot" data-slide="2"></div>
-            </div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- OFERTAS DESTACADAS (debajo del banner) -->
-      <section id="ofertas">
-        <div class="section-header">
-          <p class="section-kicker">Promociones</p>
-          <h2 class="section-title">Ofertas destacadas para tu obra</h2>
-          <p class="section-subtitle">
-            Estos son algunos productos en oferta. En el catálogo encontrarás muchos más
-            materiales y herramientas.
-          </p>
-        </div>
-
-        <div class="offers-grid">
-          <article class="offer-card">
-            <span class="offer-tag">OFERTA</span>
-            <h3 class="offer-title">Cemento Portland Tipo I 42.5kg</h3>
-            <p class="offer-price">S/ 32.90</p>
-            <p style="font-size:0.82rem; color:var(--muted);">
-              Ideal para estructuras, sobrecimientos y losas. Stock sujeto a tienda.
-            </p>
-            <p class="offer-cta">
-              Ver más en el catálogo →
-            </p>
-          </article>
-
-          <article class="offer-card">
-            <span class="offer-tag">OFERTA</span>
-            <h3 class="offer-title">Fierro corrugado 1/2" x 9 m</h3>
-            <p class="offer-price">S/ 46.50</p>
-            <p style="font-size:0.82rem; color:var(--muted);">
-              Refuerza columnas, vigas y zapatas con calidad certificada.
-            </p>
-            <p class="offer-cta">
-              Ver más en el catálogo →
-            </p>
-          </article>
-
-          <article class="offer-card">
-            <span class="offer-tag">OFERTA</span>
-            <h3 class="offer-title">Taladro percutor 750W</h3>
-            <p class="offer-price">S/ 259.90</p>
-            <p style="font-size:0.82rem; color:var(--muted);">
-              Perfecto para trabajos en concreto, ladrillo y madera.
-            </p>
-            <p class="offer-cta">
-              Ver más en el catálogo →
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- SECCIÓN (ANTES: ¿Por qué trabajar con Yeliber?) -->
-      <!-- AHORA: Ferretería Lescano es tu aliado + plan de recompensas -->
-      <section id="recompensas">
-        <div class="section-header">
-          <p class="section-kicker">Tu aliado en la construcción</p>
-          <h2 class="section-title">Ferretería Lescano & Programa de Recompensas Lescano+</h2>
-          <p class="section-subtitle">
-            No solo vendemos materiales, te acompañamos desde la planificación hasta la
-            entrega, y premiamos tu fidelidad con un programa de puntos sencillo y claro.
-          </p>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <h3 class="card-title">Acompañamiento para tu obra</h3>
-            <p>
-              Te ayudamos a definir la lista de materiales según el tipo de proyecto:
-              vivienda, ampliación, remodelación o mantenimiento. Evita compras de más
-              y retrabajos.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Recompensas por cada compra</h3>
-            <p>
-              Con <strong>Lescano+</strong> acumulas
-              <strong>1 punto por cada S/ 1</strong> en compras. Canjea tus puntos por
-              descuentos en futuras compras, productos seleccionados y beneficios
-              exclusivos.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3 class="card-title">Beneficios para maestros y empresas</h3>
-            <p>
-              Si eres maestro de obra, contratista o empresa, accede a precios especiales,
-              bonificaciones por volumen y recompensas adicionales por tus compras mensuales.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- SECCIÓN QUE HABÍA DE "¿Qué puedo hacer por ti?" => ELIMINADA -->
-
-      <!-- SECCIÓN (ANTES: Conoce más sobre Farmasi) -->
-      <!-- AHORA: Conoce más de Ferretería Lescano + video YouTube -->
-      <section id="sobre-lescano">
-        <div class="section-header">
-          <p class="section-kicker">Acerca de nosotros</p>
-          <h2 class="section-title">Conoce más de Ferretería Lescano</h2>
-          <p class="section-subtitle">
-            Te contamos quiénes somos, cómo trabajamos y por qué somos el aliado ideal
-            para tu obra, desde los cimientos hasta los acabados.
-          </p>
-        </div>
-
-        <div class="video-panel">
-          <div class="video-wrapper">
-            <iframe
-              src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
-              title="Video de presentación Ferretería Lescano"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+  <!-- SLIDER FULL WIDTH -->
+  <section class="slider-section">
+    <div class="slider-inner">
+      <div class="slider-frame" id="sliderFrame">
+        <div
+          class="slide active"
+          style="background-image:url('img/banner-ferreteria-1.jpg');"
+        >
+          <div class="slide-overlay">
+            <span class="slide-tag">OFERTA DESTACADA</span>
+            <h3>Combo cemento + fierro para estructuras</h3>
+            <p>Precios especiales para columnas, vigas y losas. Consulta stock en tienda.</p>
           </div>
         </div>
-        <p style="font-size:0.8rem; color:var(--muted); margin-top:6px;">
-          Cuando tengas tu video subido a YouTube, solo reemplaza <code>VIDEO_ID_AQUI</code>
-          por el ID de tu video.
-        </p>
-      </section>
 
-      <!-- SECCIÓN COTIZA (botón llamativo) -->
-      <section id="cotiza">
-        <div class="section-header">
-          <p class="section-kicker">Cotizaciones</p>
-          <h2 class="section-title">⚒️ Cotiza los materiales para tu obra</h2>
-          <p class="section-subtitle">
-            Completa estos datos y te contactamos por WhatsApp para enviarte una cotización
-            personalizada con precios actualizados.
-          </p>
-        </div>
-
-        <div class="contact-card">
-          <form onsubmit="enviarCotizacion(event)">
-            <div class="contact-row">
-              <div style="flex:1; min-width:220px;">
-                <label class="contact-label">Nombre completo</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  required
-                  style="width:100%; padding:8px 10px; border-radius:999px; border:1px solid var(--border); font-size:0.88rem;"
-                />
-              </div>
-              <div style="flex:1; min-width:220px;">
-                <label class="contact-label">WhatsApp</label>
-                <input
-                  type="tel"
-                  id="whatsapp"
-                  required
-                  style="width:100%; padding:8px 10px; border-radius:999px; border:1px solid var(--border); font-size:0.88rem;"
-                />
-              </div>
-            </div>
-
-            <div style="margin-top:10px;">
-              <label class="contact-label">Cuéntanos sobre tu obra</label>
-              <textarea
-                id="detalle"
-                rows="4"
-                required
-                style="width:100%; padding:8px 10px; border-radius:14px; border:1px solid var(--border); font-size:0.88rem;"
-                placeholder="Ejemplo: Construcción de segundo piso de 60 m², necesito cemento, fierro, ladrillo, arena, tubos de agua y accesorios..."
-              ></textarea>
-            </div>
-
-            <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-              <button type="submit" class="btn btn-primary">
-                Enviar cotización por WhatsApp
-              </button>
-              <span style="font-size:0.8rem; color:var(--muted);">
-                Se abrirá WhatsApp con tu mensaje listo para enviar.
-              </span>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <!-- CONTACTO & REDES (misma estructura, datos inventados) -->
-      <section id="contacto">
-        <div class="section-header">
-          <p class="section-kicker">Hablemos</p>
-          <h2 class="section-title">Contacto & redes</h2>
-          <p class="section-subtitle">
-            Escríbenos para cotizaciones, consultas sobre productos o coordinación de entregas.
-          </p>
-        </div>
-
-        <div class="contact-card">
-          <div class="contact-row">
-            <div style="min-width:220px;">
-              <div class="contact-label">WhatsApp</div>
-              <a
-                href="https://wa.me/51987654321"
-                target="_blank"
-                style="color:#166534; font-weight:500; display:block;"
-              >Escríbenos por WhatsApp</a>
-              <a
-                href="https://wa.me/51987654321"
-                target="_blank"
-                class="whatsapp-number"
-              >
-                <img src="img/Logo whatsapp 1.png" alt="WhatsApp" class="whatsapp-icon" />
-                <span style="font-weight:700;">+51 987 654 321</span>
-              </a>
-            </div>
-
-            <div style="min-width:220px;">
-              <div class="contact-label">Ubicación</div>
-              <p style="font-size:0.88rem;">
-                Av. Principal 123, Urb. Las Obras<br />
-                San Miguel, Lima – Perú
-              </p>
-            </div>
-
-            <div style="min-width:220px;">
-              <div class="contact-label">Correo</div>
-              <p style="font-size:0.88rem;">
-                <a href="mailto:contacto@ferreterialescanoperu.com">
-                  contacto@ferreterialescanoperu.com
-                </a>
-              </p>
-              <p style="font-size:0.82rem; color:var(--muted);">
-                Horario: Lun a Sáb de 8:00 am a 7:00 pm
-              </p>
-            </div>
+        <div
+          class="slide"
+          style="background-image:url('img/banner-ferreteria-2.jpg');"
+        >
+          <div class="slide-overlay">
+            <span class="slide-tag">HERRAMIENTAS</span>
+            <h3>Taladros y esmeriles para uso profesional</h3>
+            <p>Equipa tu maletín con marcas de confianza para obra diaria.</p>
           </div>
+        </div>
 
-          <div class="contact-row">
+        <div
+          class="slide"
+          style="background-image:url('img/banner-ferreteria-3.jpg');"
+        >
+          <div class="slide-overlay">
+            <span class="slide-tag">PINTURAS & ACABADOS</span>
+            <h3>Dale el mejor acabado a tus ambientes</h3>
+            <p>Pinturas, selladores y accesorios para renovar tus espacios.</p>
+          </div>
+        </div>
+
+        <div class="slider-dots" id="sliderDots">
+          <div class="slider-dot active" data-index="0"></div>
+          <div class="slider-dot" data-index="1"></div>
+          <div class="slider-dot" data-index="2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="page">
+    <!-- LAYOUT: SIDEBAR FILTROS + CATÁLOGO -->
+    <section class="layout">
+      <!-- SIDEBAR (FILTROS TIPO METRO) -->
+      <aside class="sidebar">
+        <div class="sidebar-title">Filtrar productos</div>
+
+        <div class="filter-group">
+          <div class="filter-label">Categorías</div>
+          <div class="filter-chips" id="categoryChips">
+            <button class="chip active" data-cat="todos">Todos</button>
+            <button class="chip" data-cat="cementos">Cementos y agregados</button>
+            <button class="chip" data-cat="fierros">Fierros y estructuras</button>
+            <button class="chip" data-cat="herramientas">Herramientas</button>
+            <button class="chip" data-cat="electricidad">Electricidad</button>
+            <button class="chip" data-cat="pinturas">Pinturas y acabados</button>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">Rango de precio</div>
+          <div class="filter-range">
+            <input type="number" id="minPrice" placeholder="Mín" />
+            <input type="number" id="maxPrice" placeholder="Máx" />
+          </div>
+          <div class="sidebar-note">Opcional. En soles (S/).</div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label">Promociones</div>
+          <div class="filter-chips">
+            <button class="chip" id="promoChip">Solo en oferta</button>
+          </div>
+        </div>
+
+        <div class="sidebar-note">
+          Usa los filtros para explorar el catálogo. Los precios son referenciales y pueden variar en tienda.
+        </div>
+      </aside>
+
+      <!-- CONTENIDO PRINCIPAL (CATÁLOGO) -->
+      <div>
+        <div class="content-header">
+          <p class="content-kicker">Catálogo</p>
+          <div class="content-title-row">
+            <h1>Productos para tu obra</h1>
+            <span style="font-size:0.82rem; color:var(--muted);" id="productCountLabel">
+              0 productos
+            </span>
+          </div>
+          <p class="content-subtitle">
+            Agrega al carrito y envía tu pedido por WhatsApp. Luego coordinamos stock y entrega.
+          </p>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <span class="pill">Entrega: coordinar en tienda / reparto</span>
+          </div>
+          <div class="toolbar-right">
+            <div class="toolbar-search">
+              <span>🔍</span>
+              <input type="text" id="searchInput" placeholder="Buscar en esta categoría" />
+            </div>
             <div>
-              <div class="contact-label">Redes sociales</div>
-              <div class="social-links">
-                <a href="#" target="_blank" class="social-pill">
-                  <img src="img/Logo Instagram 1.png" alt="Instagram" />
-                  <span>Instagram</span>
-                </a>
-                <a href="#" target="_blank" class="social-pill">
-                  <img src="img/Logo facebook 1.png" alt="Facebook" />
-                  <span>Facebook</span>
-                </a>
-                <a href="#" target="_blank" class="social-pill">
-                  <img src="img/Logo tiktok 1.png" alt="TikTok" />
-                  <span>TikTok</span>
-                </a>
-                <a href="#" target="_blank" class="social-pill">
-                  <img src="img/Logo Youtube 1.png" alt="YouTube" />
-                  <span>YouTube</span>
-                </a>
-              </div>
+              <select id="sortSelect">
+                <option value="recomendado">Orden recomendado</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="nombre-asc">Nombre A-Z</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Se llenará con JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO RECOMPENSAS + VIDEO + COTIZA -->
+    <section class="info-section" id="recompensas">
+      <div class="info-block">
+        <h2>Ferretería Lescano: tu aliado en la construcción</h2>
+        <p>
+          Te acompañamos desde la planificación hasta la entrega de tus materiales. Con nuestro
+          <strong>Programa de Recompensas Lescano+</strong> obtienes beneficios mientras construyes.
+        </p>
+        <ul class="info-list">
+          <li><strong>1 punto por cada S/ 1</strong> en compras.</li>
+          <li>Canjea puntos por descuentos y productos seleccionados.</li>
+          <li>Bonos especiales por superar montos mensuales.</li>
+          <li>Beneficios adicionales para maestros de obra y empresas.</li>
+          <li>Premios por referidos: trae a tus contactos y ambos ganan.</li>
+        </ul>
+        <p>
+          Solo indica tu número de WhatsApp al comprar o en tus pedidos online, y empezamos a registrar tus compras.
+        </p>
+      </div>
+
+      <div class="info-block" id="sobre-lescano">
+        <h2>Conoce más de Ferretería Lescano</h2>
+        <p>
+          Mira nuestro video de presentación para conocer la tienda, los servicios y cómo trabajamos para que tu obra avance sin pausas.
+        </p>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+            title="Ferretería Lescano - Video de presentación"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p class="form-help">
+          Cuando tengas tu video en YouTube, reemplaza <code>VIDEO_ID_AQUI</code> por el ID real.
+        </p>
+      </div>
+    </section>
+
+    <!-- COTIZA TU OBRA -->
+    <section class="info-section" id="cotiza">
+      <div class="info-block">
+        <h2>⚒️ Cotiza los materiales para tu obra</h2>
+        <p>
+          Cuéntanos qué vas a construir y te ayudamos a armar la lista de materiales con precios referenciales actualizados.
+        </p>
+        <ul class="info-list">
+          <li>Construcciones nuevas (casas, pisos adicionales).</li>
+          <li>Ampliaciones y remodelaciones de ambientes.</li>
+          <li>Trabajos de electricidad, gasfitería y pintura.</li>
+          <li>Proyectos para maestros, contratistas y empresas.</li>
+        </ul>
+        <p class="form-help">
+          Si ya agregaste productos al carrito, también puedes enviarnos tu pedido por WhatsApp desde el carrito.
+        </p>
+      </div>
+
+      <div class="info-block">
+        <h2>Formulario de cotización rápida</h2>
+        <form onsubmit="enviarCotizacion(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <div class="form-label">Nombre completo</div>
+              <input type="text" id="nombre" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <div class="form-label">WhatsApp</div>
+              <input type="tel" id="whatsapp" class="form-input" required />
             </div>
           </div>
 
-          <p style="font-size: 0.8rem; color: var(--muted); margin-top: 8px;">
-            Responderemos lo antes posible ✅ Indícanos si deseas una cotización,
-            si buscas un producto específico o si eres maestro/empresa.
+          <div style="margin-top:8px;">
+            <div class="form-label">Cuéntanos sobre tu obra</div>
+            <textarea
+              id="detalle"
+              class="form-textarea"
+              placeholder="Ejemplo: Construcción de segundo piso de 60 m², necesito cemento, fierro, ladrillo, arena, tubos de agua y accesorios..."
+              required
+            ></textarea>
+          </div>
+
+          <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+            <button type="submit" class="btn-primary">
+              Enviar cotización por WhatsApp
+            </button>
+            <span class="form-help">
+              Se abrirá WhatsApp con tu mensaje listo para enviar.
+            </span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- CONTACTO & REDES -->
+    <section class="contact-section" id="contacto">
+      <div class="contact-row">
+        <div class="contact-col">
+          <div class="contact-label">Tienda</div>
+          <p>
+            <strong>Ferretería Lescano</strong><br />
+            Av. Principal 123, Urb. Las Obras<br />
+            San Miguel, Lima – Perú
+          </p>
+          <p style="font-size:0.82rem; color:var(--muted); margin-top:4px;">
+            Horario: Lun a Sáb de 8:00 am a 7:00 pm
           </p>
         </div>
-      </section>
-    </main>
+
+        <div class="contact-col">
+          <div class="contact-label">Contacto</div>
+          <p>
+            WhatsApp:
+            <a href="https://wa.me/51987654321" target="_blank" class="whatsapp-number">
+              <span>+51 987 654 321</span>
+            </a>
+          </p>
+          <p>
+            Teléfono: (01) 567-8901<br />
+            Correo:
+            <a href="mailto:contacto@ferreterialescanoperu.com">
+              contacto@ferreterialescanoperu.com
+            </a>
+          </p>
+        </div>
+
+        <div class="contact-col">
+          <div class="contact-label">Redes sociales</div>
+          <div class="social-links">
+            <a href="#" target="_blank" class="social-pill">
+              <img src="img/Logo facebook 1.png" alt="Facebook" />
+              <span>Facebook</span>
+            </a>
+            <a href="#" target="_blank" class="social-pill">
+              <img src="img/Logo Instagram 1.png" alt="Instagram" />
+              <span>Instagram</span>
+            </a>
+            <a href="#" target="_blank" class="social-pill">
+              <img src="img/Logo tiktok 1.png" alt="TikTok" />
+              <span>TikTok</span>
+            </a>
+            <a href="#" target="_blank" class="social-pill">
+              <img src="img/Logo Youtube 1.png" alt="YouTube" />
+              <span>YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="form-help">
+        Responderemos lo antes posible ✅ Indícanos si deseas una cotización, buscas un producto específico
+        o eres maestro/empresa.
+      </p>
+    </section>
 
     <footer>
-      <span>
-        © <span id="year"></span> Ferretería Lescano · Tu aliado en la construcción
-      </span>
-      <span style="font-size: 0.78rem;">
-        ⚠️ Sitio web informativo de Ferretería Lescano para mostrar productos, ofertas y recibir cotizaciones.
-      </span>
+      <span>© <span id="year"></span> Ferretería Lescano · Tu aliado en la construcción</span>
+      <span>Web para mostrar productos, ofertas y recibir pedidos/cotizaciones por WhatsApp.</span>
     </footer>
   </div>
 
+  <!-- BOTÓN FLOTANTE CARRITO -->
+  <button class="cart-button-fab" type="button" onclick="toggleCart(true)">
+    🛒 <span id="fabCartAmount">S/ 0.00</span>
+    <span class="cart-mini-count" id="fabCartCount">0</span>
+  </button>
+
+  <!-- PANEL CARRITO -->
+  <div class="cart-panel-backdrop" id="cartBackdrop">
+    <div class="cart-panel">
+      <div class="cart-panel-header">
+        <span>Tu carrito</span>
+        <button type="button" onclick="toggleCart(false)">✕</button>
+      </div>
+      <div class="cart-panel-body" id="cartItems">
+        <!-- Items -->
+      </div>
+      <div class="cart-panel-footer">
+        <div class="cart-panel-footer-row">
+          <span>Total aproximado:</span>
+          <strong id="cartTotal">S/ 0.00</strong>
+        </div>
+        <button class="btn-wa" type="button" onclick="enviarPedidoWhatsApp()">
+          📲 Enviar pedido por WhatsApp
+        </button>
+        <p class="form-help" style="margin-top:6px;">
+          Verificaremos stock, confirmaremos precios y coordinaremos entrega o recojo.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Scroll suave para enlaces internos
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      a.addEventListener("click", (e) => {
-        const targetId = a.getAttribute("href").substring(1);
-        const target = document.getElementById(targetId);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({
-            top: target.offsetTop - 20,
-            behavior: "smooth",
-          });
-        }
-      });
-    });
-
-    // 🛒 Sincronizar carrito flotante en el INDEX con localStorage
-    (function syncCartOnIndex() {
-      const btn = document.getElementById("indexCartBtn");
-      const amountEl = document.getElementById("indexCartAmount");
-      const countEl = document.getElementById("indexCartCount");
-      if (!btn || !amountEl || !countEl) return;
-
-      function updateFromStorage() {
-        // Usamos una clave genérica para la ferretería
-        const saved = localStorage.getItem("ferreteria_cart");
-        let cart = [];
-        if (saved) {
-          try {
-            cart = JSON.parse(saved);
-          } catch (e) {
-            cart = [];
-          }
-        }
-        const totalItems = cart.reduce((s, i) => s + (i.qty || 0), 0);
-        const total = cart.reduce((s, i) => s + (i.price * (i.qty || 0)), 0);
-        countEl.textContent = totalItems;
-        amountEl.textContent = `S/ ${total.toFixed(2)}`;
-      }
-
-      updateFromStorage();
-      window.addEventListener("storage", updateFromStorage);
-
-      btn.addEventListener("click", () => {
-        window.location.href = "catalogo.html";
-      });
-    })();
-
-    // Slider simple para los banners
-    (function initBannerSlider() {
-      const slider = document.getElementById("bannerSlider");
-      if (!slider) return;
-      const slides = slider.querySelectorAll(".banner-slide");
-      const dots = document.querySelectorAll(".banner-dot");
-      let current = 0;
-
-      function goTo(idx) {
-        slides[current].classList.remove("active");
-        dots[current].classList.remove("active");
-        current = idx;
-        slides[current].classList.add("active");
-        dots[current].classList.add("active");
-      }
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => goTo(index));
-      });
-
-      setInterval(() => {
-        const next = (current + 1) % slides.length;
-        goTo(next);
-      }, 5000);
-    })();
-
-    // Enviar cotización por WhatsApp
     const WHATSAPP_FERRETERIA = "51987654321";
+    const CART_KEY = "ferreteria_cart";
+
+    // Productos de ejemplo (puedes ampliarlos / editarlos)
+    const products = [
+      {
+        id: 1,
+        nombre: "Cemento Portland Tipo I 42.5kg",
+        categoria: "cementos",
+        precio: 32.9,
+        oferta: true,
+        imagen: "img/cemento.jpg"
+      },
+      {
+        id: 2,
+        nombre: "Fierro corrugado 1/2\" x 9m",
+        categoria: "fierros",
+        precio: 46.5,
+        oferta: true,
+        imagen: "img/fierro.jpg"
+      },
+      {
+        id: 3,
+        nombre: "Taladro percutor 750W",
+        categoria: "herramientas",
+        precio: 259.9,
+        oferta: false,
+        imagen: "img/taladro.jpg"
+      },
+      {
+        id: 4,
+        nombre: "Esmeril angular 4 1/2\"",
+        categoria: "herramientas",
+        precio: 199.9,
+        oferta: false,
+        imagen: "img/esmeril.jpg"
+      },
+      {
+        id: 5,
+        nombre: "Cable eléctrico 2x2.5mm rollo 100m",
+        categoria: "electricidad",
+        precio: 349.0,
+        oferta: true,
+        imagen: "img/cable.jpg"
+      },
+      {
+        id: 6,
+        nombre: "Pintura látex interior 1 galón blanco",
+        categoria: "pinturas",
+        precio: 79.9,
+        oferta: false,
+        imagen: "img/pintura.jpg"
+      },
+      {
+        id: 7,
+        nombre: "Ladrillo king kong",
+        categoria: "cementos",
+        precio: 1.3,
+        oferta: false,
+        imagen: "img/ladrillo.jpg"
+      },
+      {
+        id: 8,
+        nombre: "Tubo PVC desagüe 4\" x 3m",
+        categoria: "electricidad",
+        precio: 38.5,
+        oferta: false,
+        imagen: "img/tubo.jpg"
+      },
+      {
+        id: 9,
+        nombre: "Rodillo para pintura 9\"",
+        categoria: "pinturas",
+        precio: 18.9,
+        oferta: true,
+        imagen: "img/rodillo.jpg"
+      }
+    ];
+
+    // Utilidades carrito
+    function getCart() {
+      const saved = localStorage.getItem(CART_KEY);
+      if (!saved) return [];
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function findProduct(id) {
+      return products.find((p) => p.id === id);
+    }
+
+    function addToCart(id, button, event) {
+      const cart = getCart();
+      const existing = cart.find((item) => item.id === id);
+      const product = findProduct(id);
+      if (!product) return;
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, qty: 1, price: product.precio });
+      }
+      saveCart(cart);
+
+      // ✨ Animaciones botón
+      if (button) {
+        button.classList.remove("btn-add-pulse", "btn-add-ripple");
+        void button.offsetWidth;
+        button.classList.add("btn-add-pulse", "btn-add-ripple");
+
+        const rect = button.getBoundingClientRect();
+        const x = event ? event.clientX - rect.left : button.offsetWidth / 2;
+        const y = event ? event.clientY - rect.top : button.offsetHeight / 2;
+        button.style.setProperty("--ripple-x", `${x}px`);
+        button.style.setProperty("--ripple-y", `${y}px`);
+      }
+
+      // Etiqueta "Añadido"
+      const card = button.closest(".product-card");
+      const label = card.querySelector(".product-added-label");
+      if (label) {
+        label.classList.add("visible");
+        setTimeout(() => label.classList.remove("visible"), 700);
+      }
+    }
+
+    function removeFromCart(id) {
+      let cart = getCart();
+      cart = cart.filter((item) => item.id !== id);
+      saveCart(cart);
+    }
+
+    function changeQty(id, delta) {
+      const cart = getCart();
+      const item = cart.find((i) => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        const filtered = cart.filter((i) => i.id !== id);
+        saveCart(filtered);
+      } else {
+        saveCart(cart);
+      }
+    }
+
+    function calcTotals(cart) {
+      let totalQty = 0;
+      let totalAmount = 0;
+      cart.forEach((item) => {
+        const product = findProduct(item.id);
+        if (!product) return;
+        totalQty += item.qty;
+        totalAmount += product.precio * item.qty;
+      });
+      return { totalQty, totalAmount };
+    }
+
+    function updateCartUI() {
+      const cart = getCart();
+      const { totalQty, totalAmount } = calcTotals(cart);
+
+      const miniCartAmount = document.getElementById("miniCartAmount");
+      const miniCartCount = document.getElementById("miniCartCount");
+      const fabCartAmount = document.getElementById("fabCartAmount");
+      const fabCartCount = document.getElementById("fabCartCount");
+      const cartTotal = document.getElementById("cartTotal");
+
+      if (miniCartAmount) miniCartAmount.textContent = `S/ ${totalAmount.toFixed(2)}`;
+      if (fabCartAmount) fabCartAmount.textContent = `S/ ${totalAmount.toFixed(2)}`;
+      if (miniCartCount) miniCartCount.textContent = totalQty;
+      if (fabCartCount) fabCartCount.textContent = totalQty;
+      if (cartTotal) cartTotal.textContent = `S/ ${totalAmount.toFixed(2)}`;
+
+      const itemsContainer = document.getElementById("cartItems");
+      if (!itemsContainer) return;
+
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = "<p style='font-size:0.86rem; color:#6b7280;'>Tu carrito está vacío.</p>";
+        return;
+      }
+
+      itemsContainer.innerHTML = "";
+      cart.forEach((item) => {
+        const product = findProduct(item.id);
+        if (!product) return;
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>
+            <div class="cart-item-title">${product.nombre}</div>
+            <div class="cart-item-meta">S/ ${product.precio.toFixed(2)} c/u</div>
+          </div>
+          <div class="cart-item-controls">
+            <button class="qty-btn" type="button" onclick="changeQty(${product.id}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" type="button" onclick="changeQty(${product.id}, 1)">+</button>
+            <button class="qty-btn" type="button" onclick="removeFromCart(${product.id})">✕</button>
+          </div>
+        `;
+        itemsContainer.appendChild(row);
+      });
+    }
+
+    function toggleCart(open) {
+      const backdrop = document.getElementById("cartBackdrop");
+      if (!backdrop) return;
+      if (open) {
+        backdrop.classList.add("open");
+      } else {
+        backdrop.classList.remove("open");
+      }
+    }
+
+    function enviarPedidoWhatsApp() {
+      const cart = getCart();
+      if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      let mensaje = "Hola, quiero hacer este pedido en Ferretería Lescano:%0A%0A";
+      cart.forEach((item) => {
+        const product = findProduct(item.id);
+        if (!product) return;
+        mensaje += `- ${product.nombre} (x${item.qty}) - S/ ${product.precio.toFixed(
+          2
+        )}%0A`;
+      });
+
+      const { totalAmount } = calcTotals(cart);
+      mensaje += `%0ATotal aproximado: S/ ${totalAmount.toFixed(2)}`;
+
+      const url = `https://wa.me/${WHATSAPP_FERRETERIA}?text=${mensaje}`;
+      window.open(url, "_blank");
+    }
 
     function enviarCotizacion(event) {
       event.preventDefault();
       const nombre = document.getElementById("nombre").value.trim();
       const whatsapp = document.getElementById("whatsapp").value.trim();
       const detalle = document.getElementById("detalle").value.trim();
-
       if (!nombre || !whatsapp || !detalle) {
         alert("Por favor completa todos los campos.");
         return;
       }
-
       const mensaje = encodeURIComponent(
-        `Hola, soy ${nombre}. Mi número de WhatsApp es ${whatsapp}. Quiero cotizar los siguientes materiales/obra:\n\n${detalle}`
+        `Hola, soy ${nombre}. Mi número de WhatsApp es ${whatsapp}. Quiero cotizar lo siguiente:\n\n${detalle}`
       );
-
       const url = `https://wa.me/${WHATSAPP_FERRETERIA}?text=${mensaje}`;
       window.open(url, "_blank");
     }
-  </script>
-</body>
-</html>
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const y = el.getBoundingClientRect().top + window.scrollY - 20;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    // FILTROS / RENDER CATALOGO
+
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      const countLabel = document.getElementById("productCountLabel");
+      if (!grid) return;
+
+      const search = (document.getElementById("searchInput").value || "").toLowerCase();
+      const globalSearch = (document.getElementById("globalSearch").value || "").toLowerCase();
+      const activeChip = document.querySelector("#categoryChips .chip.active");
+      const category = activeChip ? activeChip.dataset.cat : "todos";
+
+      const minPriceVal = parseFloat(document.getElementById("minPrice").value || "0");
+      const maxPriceInput = document.getElementById("maxPrice").value;
+      const maxPriceVal = maxPriceInput ? parseFloat(maxPriceInput) : Infinity;
+
+      const promoActive = document.getElementById("promoChip").classList.contains("active");
+      const sortValue = document.getElementById("sortSelect").value;
+
+      let filtered = products.filter((p) => {
+        if (category !== "todos" && p.categoria !== category) return false;
+        if (promoActive && !p.oferta) return false;
+        if (minPriceVal && p.precio < minPriceVal) return false;
+        if (maxPriceInput && p.precio > maxPriceVal) return false;
+
+        const text = p.nombre.toLowerCase();
+        if (search && !text.includes(search)) return false;
+        if (globalSearch && !text.includes(globalSearch)) return false;
+        return true;
+      });
+
+      if (sortValue === "precio-asc") {
+        filtered.sort((a, b) => a.precio - b.precio);
+      } else if (sortValue === "precio-desc") {
+        filtered.sort((a, b) => b.precio - a.precio);
+      } else if (sortValue === "nombre-asc") {
+        filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      }
+
+      grid.innerHTML = "";
+      if (!filtered.length) {
+        grid.innerHTML =
+          "<p style='font-size:0.9rem; color:#6b7280;'>No se encontraron productos con los filtros actuales.</p>";
+      } else {
+        filtered.forEach((p) => {
+          const card = document.createElement("article");
+          card.className = "product-card";
+          card.innerHTML = `
+            <div class="product-added-label">Añadido ✓</div>
+            <div class="product-image" style="background-image:url('${p.imagen}')"></div>
+            <div class="product-name">${p.nombre}</div>
+            <div class="product-category">Categoría: ${p.categoria}</div>
+            <div class="product-price-row">
+              <span class="product-price">S/ ${p.precio.toFixed(2)}</span>
+              ${p.oferta ? '<span class="product-badge">Oferta</span>' : ""}
+            </div>
+            <div class="product-cta">
+              <button class="btn-add" type="button">
+                <span>🛒 Agregar</span>
+              </button>
+            </div>
+          `;
+          const btn = card.querySelector(".btn-add");
+          btn.addEventListener("click", (ev) => addToCart(p.id, btn, ev));
+          grid.appendChild(card);
+        });
+      }
+
+      if (countLabel) {
+        countLabel.textContent = `${filtered.length} producto${filtered.length !== 1 ? "s" : ""}`;
+      }
+    }
+
+    // Slider
+
+    function initSlider() {
+      const frame = document.getElementById("sliderFrame");
+      if (!frame) return;
+      const slides = frame.querySelectorAll(".slide");
+      const dots = document.querySelectorAll(".slider-dot");
+      let current = 0;
+
+      function goTo(index) {
+        slides[current].classList.remove("active");
+        dots[current].classList.remove("active");
+        current = index;
+        slides[current].classList.add("active");
+        dots[current].classList.add("active");
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = parseInt(dot.dataset.index, 10);
+          goTo(idx);
+        });
+      });
+
+      setInterval(() => {
+        const next = (current + 1) % slides.length;
+        goTo(next);
+      }, 5000);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Filtros categorías
+      document.querySelectorAll("#categoryChips .chip").forEach((chip) => {
+        chip.addEventListener("click", () => {
+          document.querySelectorAll("#categoryChips .chip").forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+          renderProducts();
+        });
+      });
+
+      // Chip promo
+      document.getElementById("promoChip").addEventListener("click", (e) => {
+        e.currentTarget.classList.toggle("active");
+        renderProducts();
+      });
+
+      // Inputs filtros
+      ["minPrice", "maxPrice", "searchInput", "globalSearch", "sortSelect"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("input", renderProducts);
+        el.addEventListener("change", renderProducts);
+      });
+
+      render
