@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catálogo - Ferretería Lescano</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">FL</span>
+        <span class="logo-text">Ferretería Lescano</span>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Inicio</a>
+        <a href="catalogo.html" class="nav-link active">Catálogo</a>
+        <a href="index.html#recompensas" class="nav-link">Recompensas</a>
+        <a href="index.html#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="index.html#cotiza" class="btn btn-outline">Cotiza tu obra</a>
+        <div class="cart-icon" id="cart-icon">
+          🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="section-header">
+        <h1>Catálogo de productos</h1>
+        <p>Agrega productos al carrito y envía tu pedido por WhatsApp.</p>
+      </div>
+
+      <!-- Filtros simples -->
+      <div class="filters">
+        <select id="filter-category" onchange="filtrarCatalogo()">
+          <option value="todos">Todas las categorías</option>
+          <option value="cementos">Cementos & agregados</option>
+          <option value="fierros">Fierros & estructuras</option>
+          <option value="herramientas">Herramientas</option>
+          <option value="electricidad">Electricidad</option>
+          <option value="pinturas">Pinturas</option>
+        </select>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar producto..."
+          oninput="filtrarCatalogo()"
+        />
+      </div>
+
+      <!-- GRID DE PRODUCTOS -->
+      <div class="products-grid" id="catalog-products">
+        <!-- Se llena desde app.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- PANEL DE CARRITO (mismo del index) -->
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-panel-inner">
+      <div class="cart-panel-header">
+        <h3>Carrito de compras</h3>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-panel-footer">
+        <p>Total: S/ <span id="cart-total">0.00</span></p>
+        <button class="btn btn-primary full-width" onclick="enviarCarritoWhatsApp()">
+          Enviar pedido por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
