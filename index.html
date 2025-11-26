@@ -49,22 +49,20 @@
       text-decoration: none;
     }
 
-    /* CONTENEDOR PRINCIPAL */
-
     .page {
       max-width: 1180px;
       margin: 0 auto;
       padding: 16px 16px 48px;
     }
 
-    /* HEADER: estilo e-commerce */
+    /* HEADER */
 
     header {
       display: grid;
       grid-template-columns: auto minmax(0, 1.4fr) auto;
       gap: 12px;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .header-logo {
@@ -120,6 +118,7 @@
       border: 1px solid transparent;
       cursor: pointer;
       color: var(--muted);
+      background: transparent;
       transition: background var(--transition-fast), border var(--transition-fast),
         color var(--transition-fast), transform var(--transition-fast);
     }
@@ -135,12 +134,10 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #ffffff;
       box-shadow: 0 12px 32px rgba(251, 128, 1, 0.5);
+      font-weight: 500;
     }
 
-    .nav-link.primary:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
+    /* MINI CARRITO CABECERA */
 
     .cart-mini {
       display: inline-flex;
@@ -173,41 +170,10 @@
       font-weight: 600;
     }
 
-    /* BOTÓN FLOTANTE CARRITO */
-
-    .cart-button-fab {
-      position: fixed;
-      right: 14px;
-      bottom: 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 14px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #ffffff;
-      font-size: 0.9rem;
-      box-shadow: 0 14px 32px rgba(251, 128, 1, 0.7);
-      z-index: 9999;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .cart-button-fab:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(251, 128, 1, 0.8);
-    }
-
-    .cart-button-fab .cart-mini-count {
-      background: #ffffff;
-      color: var(--secondary);
-    }
-
-    /* HERO TOP (texto corto encima del slider) */
+    /* HERO TOP */
 
     .hero-top {
-      margin: 8px 0 10px;
+      margin: 4px 0 0;
     }
 
     .hero-kicker {
@@ -219,7 +185,7 @@
     }
 
     .hero-title {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
@@ -237,20 +203,21 @@
       width: 100vw;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
+      margin-top: -2px; /* casi sin espacio con el texto */
       margin-bottom: 20px;
     }
 
     .slider-inner {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 6px 16px 0;
+      padding: 0 16px 0;
     }
 
     .slider-frame {
       position: relative;
       border-radius: 18px;
       overflow: hidden;
-      height: 260px;
+      height: 320px; /* más alto */
       background: #111827;
       box-shadow: 0 20px 45px rgba(15, 23, 42, 0.6);
     }
@@ -279,7 +246,7 @@
     }
 
     .slide-overlay h3 {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       margin-bottom: 4px;
     }
 
@@ -315,16 +282,16 @@
       background: #facc15;
     }
 
-    /* LAYOUT GENERAL: SIDEBAR FILTROS + CATÁLOGO (similar metro) */
+    /* LAYOUT FILTROS + CATÁLOGO */
 
     .layout {
       display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
+      grid-template-columns: 280px minmax(0, 1fr);
       gap: 18px;
       margin-top: 6px;
     }
 
-    /* SIDEBAR / FILTROS */
+    /* SIDEBAR CON CATEGORÍAS DESPLEGABLES */
 
     .sidebar {
       background: #ffffff;
@@ -355,6 +322,80 @@
       margin-bottom: 4px;
     }
 
+    .category-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .category-item {
+      border-radius: 10px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+
+    .category-toggle {
+      width: 100%;
+      padding: 7px 10px;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    .category-toggle span.arrow {
+      font-size: 0.82rem;
+      color: var(--muted);
+      transition: transform 0.16s ease;
+    }
+
+    .category-item.open .category-toggle span.arrow {
+      transform: rotate(180deg);
+    }
+
+    .subcategory-list {
+      padding: 4px 10px 8px;
+      border-top: 1px solid #e5e7eb;
+      display: none;
+      background: #ffffff;
+    }
+
+    .category-item.open .subcategory-list {
+      display: block;
+    }
+
+    .subcategory-list label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 2px 0;
+    }
+
+    .subcategory-list input[type="checkbox"] {
+      accent-color: #facc15;
+    }
+
+    .filter-range {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .filter-range input {
+      width: 100%;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+
     .filter-chips {
       display: flex;
       flex-wrap: wrap;
@@ -380,27 +421,13 @@
       transform: translateY(-1px);
     }
 
-    .filter-range {
-      display: flex;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .filter-range input {
-      width: 100%;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 0.8rem;
-    }
-
     .sidebar-note {
       font-size: 0.78rem;
       color: var(--muted);
       margin-top: 4px;
     }
 
-    /* CONTENIDO (CATÁLOGO) */
+    /* CONTENIDO / CATALOGO */
 
     .content-header {
       margin-bottom: 10px;
@@ -493,7 +520,7 @@
       color: var(--muted);
     }
 
-    /* GRID DE PRODUCTOS */
+    /* GRID PRODUCTOS */
 
     .products-grid {
       display: grid;
@@ -607,49 +634,32 @@
       background: linear-gradient(135deg, #fef3c7, #ffedd5);
     }
 
-    /* ✨ ANIMACIÓN AL HACER CLIC EN "AGREGAR" */
+    /* ✨ ANIMACIONES BOTÓN AGREGAR (PULSE + DESTELLOS) */
 
     .btn-add-pulse {
       animation: btn-pulse 0.22s ease-out;
     }
 
     @keyframes btn-pulse {
-      0% {
-        transform: scale(1);
-      }
-      40% {
-        transform: scale(0.96);
-      }
-      100% {
-        transform: scale(1.04);
-      }
+      0% { transform: scale(1); }
+      40% { transform: scale(0.96); }
+      100% { transform: scale(1.04); }
     }
 
-    .btn-add::after {
-      content: "";
+    .sparkle {
       position: absolute;
-      width: 16px;
-      height: 16px;
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
-      background: rgba(248, 192, 19, 0.5);
-      opacity: 0;
-      transform: scale(1);
+      background: radial-gradient(circle, #ffffff, #facc15);
       pointer-events: none;
+      opacity: 0;
+      animation: sparkle 0.5s ease-out forwards;
     }
 
-    .btn-add-ripple::after {
-      animation: ripple 0.3s ease-out;
-    }
-
-    @keyframes ripple {
-      0% {
-        opacity: 0.45;
-        transform: scale(0);
-      }
-      100% {
-        opacity: 0;
-        transform: scale(3);
-      }
+    @keyframes sparkle {
+      0% { opacity: 1; transform: translate(0, 0) scale(0.7); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.4); }
     }
 
     .product-added-label {
@@ -672,7 +682,59 @@
       transform: translateY(0);
     }
 
-    /* PANEL DE CARRITO LATERAL */
+    /* BOTONES FLOTANTES: CARRITO + WHATSAPP */
+
+    .cart-button-fab {
+      position: fixed;
+      right: 14px;
+      bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      font-size: 0.9rem;
+      box-shadow: 0 14px 32px rgba(251, 128, 1, 0.7);
+      z-index: 9999;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .cart-button-fab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(251, 128, 1, 0.8);
+    }
+
+    .cart-button-fab .cart-mini-count {
+      background: #ffffff;
+      color: var(--secondary);
+    }
+
+    .whatsapp-fab {
+      position: fixed;
+      right: 14px;
+      bottom: 70px;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #facc15, #16a34a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.6);
+      z-index: 9999;
+    }
+
+    .whatsapp-fab img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+
+    /* PANEL CARRITO LATERAL */
 
     .cart-panel-backdrop {
       position: fixed;
@@ -786,7 +848,7 @@
       filter: brightness(1.05);
     }
 
-    /* SECCIÓN TEXTO RECOMPENSAS + VIDEO + COTIZA */
+    /* BLOQUES INFORMATIVOS / COTIZA / VIDEO */
 
     .info-section {
       margin-top: 28px;
@@ -903,7 +965,7 @@
       filter: brightness(1.05);
     }
 
-    /* CONTACTO & FOOTER */
+    /* CONTACTO & FOOTER (INSPIRADO EN PROMART) */
 
     .contact-section {
       margin-top: 26px;
@@ -911,20 +973,26 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      padding: 14px;
+      padding: 18px 14px 14px;
       font-size: 0.9rem;
     }
 
+    .contact-section-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
     .contact-row {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       margin-bottom: 10px;
     }
 
     .contact-col {
-      min-width: 200px;
-      flex: 1;
+      min-width: 220px;
+      font-size: 0.86rem;
     }
 
     .contact-label {
@@ -969,8 +1037,28 @@
       object-fit: contain;
     }
 
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+      font-size: 0.82rem;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 4px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
     footer {
-      margin-top: 18px;
+      margin-top: 16px;
       padding-top: 10px;
       border-top: 1px solid #fde68a;
       font-size: 0.78rem;
@@ -997,6 +1085,14 @@
       .layout {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .contact-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 720px) {
@@ -1009,16 +1105,29 @@
       }
 
       .slider-frame {
-        height: 210px;
+        height: 240px;
       }
 
       .info-section {
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .contact-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer-links {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       .cart-button-fab {
         right: 10px;
         bottom: 14px;
+      }
+
+      .whatsapp-fab {
+        right: 10px;
+        bottom: 66px;
       }
     }
   </style>
@@ -1028,7 +1137,6 @@
     <!-- HEADER -->
     <header>
       <div class="header-logo">
-        <!-- Reemplaza esta imagen por tu logo -->
         <img src="img/logo-ferreteria-placeholder.png" alt="Ferretería Lescano" />
         <span>Ferretería Lescano</span>
       </div>
@@ -1043,9 +1151,12 @@
       </div>
 
       <div class="header-actions">
-        <button class="nav-link" onclick="scrollToSection('recompensas')">Recompensas</button>
-        <button class="nav-link" onclick="scrollToSection('cotiza')">Cotiza tu obra</button>
-        <button class="nav-link" onclick="scrollToSection('contacto')">Contacto</button>
+        <button class="nav-link" type="button" onclick="alert('Iniciar sesión estará disponible próximamente.')">
+          Iniciar sesión
+        </button>
+        <button class="nav-link primary" type="button" onclick="alert('Registro de usuarios estará disponible próximamente.')">
+          Registrarse
+        </button>
 
         <button class="cart-mini" type="button" onclick="toggleCart(true)">
           🛒 <span id="miniCartAmount">S/ 0.00</span>
@@ -1058,12 +1169,12 @@
     <section class="hero-top">
       <p class="hero-kicker">Ferretería · Construcción & Remodelación</p>
       <h1 class="hero-title">
-        Tu obra con el respaldo de <span>Ferretería Lescano</span>
+        Ferretería Lescano, <span>tu aliado en la construcción.</span>
       </h1>
     </section>
   </div>
 
-  <!-- SLIDER FULL WIDTH -->
+  <!-- SLIDER FULL WIDTH (SIN ESPACIO CON EL TEXTO) -->
   <section class="slider-section">
     <div class="slider-inner">
       <div class="slider-frame" id="sliderFrame">
@@ -1110,24 +1221,86 @@
   </section>
 
   <div class="page">
-    <!-- LAYOUT: SIDEBAR FILTROS + CATÁLOGO -->
+    <!-- LAYOUT: SIDEBAR + CATÁLOGO -->
     <section class="layout">
-      <!-- SIDEBAR (FILTROS TIPO METRO) -->
+      <!-- SIDEBAR -->
       <aside class="sidebar">
         <div class="sidebar-title">Filtrar productos</div>
 
+        <!-- Categorías desplegables + subcategorías con checkboxes -->
         <div class="filter-group">
           <div class="filter-label">Categorías</div>
-          <div class="filter-chips" id="categoryChips">
-            <button class="chip active" data-cat="todos">Todos</button>
-            <button class="chip" data-cat="cementos">Cementos y agregados</button>
-            <button class="chip" data-cat="fierros">Fierros y estructuras</button>
-            <button class="chip" data-cat="herramientas">Herramientas</button>
-            <button class="chip" data-cat="electricidad">Electricidad</button>
-            <button class="chip" data-cat="pinturas">Pinturas y acabados</button>
+          <div class="category-accordion">
+            <div class="category-item open">
+              <button class="category-toggle" type="button">
+                <span>Cementos y agregados</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="cemento"> Cemento</label>
+                <label><input type="checkbox" value="ladrillos"> Ladrillos</label>
+                <label><input type="checkbox" value="arena-piedra"> Arena & piedra</label>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <button class="category-toggle" type="button">
+                <span>Fierros y estructuras</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="fierro-corrugado"> Fierro corrugado</label>
+                <label><input type="checkbox" value="mallas-alambres"> Mallas y alambres</label>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <button class="category-toggle" type="button">
+                <span>Herramientas</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="herramientas-electricas"> Herramientas eléctricas</label>
+                <label><input type="checkbox" value="herramientas-manuales"> Herramientas manuales</label>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <button class="category-toggle" type="button">
+                <span>Electricidad</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="cables"> Cables</label>
+                <label><input type="checkbox" value="iluminacion"> Iluminación</label>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <button class="category-toggle" type="button">
+                <span>Gasfitería</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="tuberias-pvc"> Tuberías PVC</label>
+                <label><input type="checkbox" value="griferia"> Grifería y accesorios</label>
+              </div>
+            </div>
+
+            <div class="category-item">
+              <button class="category-toggle" type="button">
+                <span>Pinturas y acabados</span>
+                <span class="arrow">▼</span>
+              </button>
+              <div class="subcategory-list">
+                <label><input type="checkbox" value="pinturas"> Pinturas</label>
+                <label><input type="checkbox" value="accesorios-pintura"> Accesorios de pintura</label>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- Rango de precio -->
         <div class="filter-group">
           <div class="filter-label">Rango de precio</div>
           <div class="filter-range">
@@ -1137,19 +1310,20 @@
           <div class="sidebar-note">Opcional. En soles (S/).</div>
         </div>
 
+        <!-- Promociones -->
         <div class="filter-group">
           <div class="filter-label">Promociones</div>
           <div class="filter-chips">
-            <button class="chip" id="promoChip">Solo en oferta</button>
+            <button class="chip" id="promoChip" type="button">Solo en oferta</button>
           </div>
         </div>
 
         <div class="sidebar-note">
-          Usa los filtros para explorar el catálogo. Los precios son referenciales y pueden variar en tienda.
+          Usa las categorías y subcategorías para explorar el catálogo. Los precios son referenciales.
         </div>
       </aside>
 
-      <!-- CONTENIDO PRINCIPAL (CATÁLOGO) -->
+      <!-- CONTENIDO PRINCIPAL -->
       <div>
         <div class="content-header">
           <p class="content-kicker">Catálogo</p>
@@ -1160,18 +1334,18 @@
             </span>
           </div>
           <p class="content-subtitle">
-            Agrega al carrito y envía tu pedido por WhatsApp. Luego coordinamos stock y entrega.
+            Agrega al carrito y envía tu pedido por WhatsApp. Luego coordinamos stock, precios finales y entrega.
           </p>
         </div>
 
         <div class="toolbar">
           <div class="toolbar-left">
-            <span class="pill">Entrega: coordinar en tienda / reparto</span>
+            <span class="pill">Negocio local · San Miguel, Lima</span>
           </div>
           <div class="toolbar-right">
             <div class="toolbar-search">
               <span>🔍</span>
-              <input type="text" id="searchInput" placeholder="Buscar en esta categoría" />
+              <input type="text" id="searchInput" placeholder="Buscar en esta vista" />
             </div>
             <div>
               <select id="sortSelect">
@@ -1185,12 +1359,12 @@
         </div>
 
         <div class="products-grid" id="productsGrid">
-          <!-- Se llenará con JS -->
+          <!-- JS -->
         </div>
       </div>
     </section>
 
-    <!-- INFO RECOMPENSAS + VIDEO + COTIZA -->
+    <!-- RECOMPENSAS + VIDEO -->
     <section class="info-section" id="recompensas">
       <div class="info-block">
         <h2>Ferretería Lescano: tu aliado en la construcción</h2>
@@ -1283,40 +1457,76 @@
       </div>
     </section>
 
-    <!-- CONTACTO & REDES -->
+    <!-- CONTACTO & FOOTER TIPO PROMART PERO LOCAL -->
     <section class="contact-section" id="contacto">
+      <h2 class="contact-section-title">Contáctanos</h2>
+
       <div class="contact-row">
         <div class="contact-col">
-          <div class="contact-label">Tienda</div>
+          <div class="contact-label">Chatea con nosotros</div>
           <p>
-            <strong>Ferretería Lescano</strong><br />
-            Av. Principal 123, Urb. Las Obras<br />
-            San Miguel, Lima – Perú
-          </p>
-          <p style="font-size:0.82rem; color:var(--muted); margin-top:4px;">
-            Horario: Lun a Sáb de 8:00 am a 7:00 pm
-          </p>
-        </div>
-
-        <div class="contact-col">
-          <div class="contact-label">Contacto</div>
-          <p>
-            WhatsApp:
+            Ir a WhatsApp<br />
             <a href="https://wa.me/51987654321" target="_blank" class="whatsapp-number">
-              <span>+51 987 654 321</span>
+              <span>(+51) 987 654 321</span>
             </a>
           </p>
-          <p>
-            Teléfono: (01) 567-8901<br />
-            Correo:
-            <a href="mailto:contacto@ferreterialescanoperu.com">
-              contacto@ferreterialescanoperu.com
-            </a>
+          <p class="form-help">
+            Estamos para ayudarte con consultas, stock y cotizaciones.
           </p>
         </div>
 
         <div class="contact-col">
-          <div class="contact-label">Redes sociales</div>
+          <div class="contact-label">Escríbenos</div>
+          <p>
+            Correo de atención al cliente:<br />
+            <a href="mailto:servicioalcliente@ferreterialescanoperu.com">
+              servicioalcliente@ferreterialescanoperu.com
+            </a>
+          </p>
+          <p>
+            Llámanos<br />
+            <strong>(01) 619-4810</strong><br />
+            <span style="font-size:0.8rem; color:var(--muted);">
+              De lunes a sábado de 8:00am a 8:00pm
+            </span>
+          </p>
+        </div>
+
+        <div class="contact-col">
+          <div class="contact-label">Visítanos</div>
+          <p>
+            Tienda principal San Miguel, Lima.<br />
+            <a href="#" target="_blank">Ver cómo llegar</a>
+          </p>
+          <p class="form-help">
+            Atención en tienda, asesoría para tu obra y retiro de pedidos.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <div class="contact-label">Secciones</div>
+          <ul>
+            <li><a href="#sobre-lescano">Nosotros</a></li>
+            <li><a href="#recompensas">Programa de recompensas</a></li>
+            <li><a href="#cotiza">Cotiza tu obra</a></li>
+            <li><a href="#">Venta empresa</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="contact-label">Atención al cliente</div>
+          <ul>
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Cambios y devoluciones</a></li>
+            <li><a href="#">Comprobantes electrónicos</a></li>
+            <li><a href="#">Términos y condiciones de compra</a></li>
+            <li><a href="#">Política de privacidad</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="contact-label">Síguenos en</div>
           <div class="social-links">
             <a href="#" target="_blank" class="social-pill">
               <img src="img/Logo facebook 1.png" alt="Facebook" />
@@ -1330,27 +1540,25 @@
               <img src="img/Logo tiktok 1.png" alt="TikTok" />
               <span>TikTok</span>
             </a>
-            <a href="#" target="_blank" class="social-pill">
-              <img src="img/Logo Youtube 1.png" alt="YouTube" />
-              <span>YouTube</span>
-            </a>
           </div>
+          <ul style="margin-top:8px;">
+            <li><a href="#">Libro de reclamaciones</a></li>
+          </ul>
         </div>
       </div>
-
-      <p class="form-help">
-        Responderemos lo antes posible ✅ Indícanos si deseas una cotización, buscas un producto específico
-        o eres maestro/empresa.
-      </p>
     </section>
 
     <footer>
-      <span>© <span id="year"></span> Ferretería Lescano · Tu aliado en la construcción</span>
-      <span>Web para mostrar productos, ofertas y recibir pedidos/cotizaciones por WhatsApp.</span>
+      <span>© <span id="year"></span> Ferretería Lescano · Negocio local en San Miguel, Lima.</span>
+      <span>Desarrollado para mostrar productos, recibir pedidos y cotizaciones por WhatsApp.</span>
     </footer>
   </div>
 
-  <!-- BOTÓN FLOTANTE CARRITO -->
+  <!-- BOTONES FLOTANTES -->
+  <a href="https://wa.me/51987654321" target="_blank" class="whatsapp-fab" aria-label="WhatsApp Ferretería Lescano">
+    <img src="img/Logo whatsapp 2.png" alt="WhatsApp" />
+  </a>
+
   <button class="cart-button-fab" type="button" onclick="toggleCart(true)">
     🛒 <span id="fabCartAmount">S/ 0.00</span>
     <span class="cart-mini-count" id="fabCartCount">0</span>
@@ -1363,9 +1571,7 @@
         <span>Tu carrito</span>
         <button type="button" onclick="toggleCart(false)">✕</button>
       </div>
-      <div class="cart-panel-body" id="cartItems">
-        <!-- Items -->
-      </div>
+      <div class="cart-panel-body" id="cartItems"></div>
       <div class="cart-panel-footer">
         <div class="cart-panel-footer-row">
           <span>Total aproximado:</span>
@@ -1385,91 +1591,50 @@
     const WHATSAPP_FERRETERIA = "51987654321";
     const CART_KEY = "ferreteria_cart";
 
-    // Productos de ejemplo (puedes ampliarlos / editarlos)
+    // Productos de ejemplo (≈20), con categoría y subcategoría
     const products = [
-      {
-        id: 1,
-        nombre: "Cemento Portland Tipo I 42.5kg",
-        categoria: "cementos",
-        precio: 32.9,
-        oferta: true,
-        imagen: "img/cemento.jpg"
-      },
-      {
-        id: 2,
-        nombre: "Fierro corrugado 1/2\" x 9m",
-        categoria: "fierros",
-        precio: 46.5,
-        oferta: true,
-        imagen: "img/fierro.jpg"
-      },
-      {
-        id: 3,
-        nombre: "Taladro percutor 750W",
-        categoria: "herramientas",
-        precio: 259.9,
-        oferta: false,
-        imagen: "img/taladro.jpg"
-      },
-      {
-        id: 4,
-        nombre: "Esmeril angular 4 1/2\"",
-        categoria: "herramientas",
-        precio: 199.9,
-        oferta: false,
-        imagen: "img/esmeril.jpg"
-      },
-      {
-        id: 5,
-        nombre: "Cable eléctrico 2x2.5mm rollo 100m",
-        categoria: "electricidad",
-        precio: 349.0,
-        oferta: true,
-        imagen: "img/cable.jpg"
-      },
-      {
-        id: 6,
-        nombre: "Pintura látex interior 1 galón blanco",
-        categoria: "pinturas",
-        precio: 79.9,
-        oferta: false,
-        imagen: "img/pintura.jpg"
-      },
-      {
-        id: 7,
-        nombre: "Ladrillo king kong",
-        categoria: "cementos",
-        precio: 1.3,
-        oferta: false,
-        imagen: "img/ladrillo.jpg"
-      },
-      {
-        id: 8,
-        nombre: "Tubo PVC desagüe 4\" x 3m",
-        categoria: "electricidad",
-        precio: 38.5,
-        oferta: false,
-        imagen: "img/tubo.jpg"
-      },
-      {
-        id: 9,
-        nombre: "Rodillo para pintura 9\"",
-        categoria: "pinturas",
-        precio: 18.9,
-        oferta: true,
-        imagen: "img/rodillo.jpg"
-      }
+      // Cementos y agregados
+      { id: 1,  nombre: "Cemento Portland Tipo I 42.5kg", categoria: "cementos", subcategoria: "cemento", precio: 32.9, oferta: true,  imagen: "img/cemento.jpg" },
+      { id: 2,  nombre: "Cemento Extra Resistente 50kg", categoria: "cementos", subcategoria: "cemento", precio: 39.5, oferta: false, imagen: "img/cemento-extra.jpg" },
+      { id: 3,  nombre: "Ladrillo King Kong 18 huecos",   categoria: "cementos", subcategoria: "ladrillos", precio: 1.3,  oferta: false, imagen: "img/ladrillo.jpg" },
+      { id: 4,  nombre: "Ladrillo pandereta",               categoria: "cementos", subcategoria: "ladrillos", precio: 1.1,  oferta: true,  imagen: "img/ladrillo-pandereta.jpg" },
+      { id: 5,  nombre: "Arena gruesa x m³",                categoria: "cementos", subcategoria: "arena-piedra", precio: 95.0, oferta: false, imagen: "img/arena.jpg" },
+      { id: 6,  nombre: "Piedra chancada x m³",             categoria: "cementos", subcategoria: "arena-piedra", precio: 110.0, oferta: false, imagen: "img/piedra.jpg" },
+
+      // Fierros y estructuras
+      { id: 7,  nombre: "Fierro corrugado 3/8\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 28.5, oferta: false, imagen: "img/fierro-3-8.jpg" },
+      { id: 8,  nombre: "Fierro corrugado 1/2\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 46.5, oferta: true,  imagen: "img/fierro.jpg" },
+      { id: 9,  nombre: "Malla electrosoldada 6mm",         categoria: "fierros", subcategoria: "mallas-alambres",   precio: 165.9, oferta: false, imagen: "img/malla.jpg" },
+      { id: 10, nombre: "Alambre recocido x kg",            categoria: "fierros", subcategoria: "mallas-alambres",   precio: 9.5,   oferta: true,  imagen: "img/alambre.jpg" },
+
+      // Herramientas
+      { id: 11, nombre: "Taladro percutor 750W",            categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 259.9, oferta: false, imagen: "img/taladro.jpg" },
+      { id: 12, nombre: "Esmeril angular 4 1/2\"",          categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 199.9, oferta: true,  imagen: "img/esmeril.jpg" },
+      { id: 13, nombre: "Juego de destornilladores x 6",    categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 34.9,  oferta: false, imagen: "img/destornilladores.jpg" },
+      { id: 14, nombre: "Martillo uña carpintero 16oz",     categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 29.9,  oferta: false, imagen: "img/martillo.jpg" },
+
+      // Electricidad
+      { id: 15, nombre: "Cable eléctrico 2x2.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 349.0, oferta: true,  imagen: "img/cable.jpg" },
+      { id: 16, nombre: "Cable mellizo 2x1.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 210.0, oferta: false, imagen: "img/cable-mellizo.jpg" },
+      { id: 17, nombre: "Foco LED 12W luz fría",            categoria: "electricidad", subcategoria: "iluminacion", precio: 8.9,   oferta: true,  imagen: "img/foco-led.jpg" },
+      { id: 18, nombre: "Reflector LED 50W exterior",       categoria: "electricidad", subcategoria: "iluminacion", precio: 89.9,  oferta: false, imagen: "img/reflector.jpg" },
+
+      // Gasfitería
+      { id: 19, nombre: "Tubo PVC desagüe 4\" x 3m",        categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 38.5,  oferta: false, imagen: "img/tubo.jpg" },
+      { id: 20, nombre: "Tee PVC 1/2\" presión",            categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 2.5,   oferta: false, imagen: "img/tee.jpg" },
+      { id: 21, nombre: "Grifo lavadero monocomando",       categoria: "gasfiteria", subcategoria: "griferia",       precio: 129.9, oferta: true,  imagen: "img/grifo.jpg" },
+
+      // Pinturas y acabados
+      { id: 22, nombre: "Pintura látex interior 1 galón blanco", categoria: "pinturas", subcategoria: "pinturas",    precio: 79.9,  oferta: false, imagen: "img/pintura.jpg" },
+      { id: 23, nombre: "Sellador acrílico 1 galón",        categoria: "pinturas", subcategoria: "pinturas",        precio: 69.9,  oferta: false, imagen: "img/sellador.jpg" },
+      { id: 24, nombre: "Rodillo para pintura 9\"",         categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 18.9, oferta: true,  imagen: "img/rodillo.jpg" },
+      { id: 25, nombre: "Brocha 2 1/2\" profesional",       categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 12.5, oferta: false, imagen: "img/brocha.jpg" }
     ];
 
-    // Utilidades carrito
     function getCart() {
       const saved = localStorage.getItem(CART_KEY);
       if (!saved) return [];
-      try {
-        return JSON.parse(saved);
-      } catch {
-        return [];
-      }
+      try { return JSON.parse(saved); } catch { return []; }
     }
 
     function saveCart(cart) {
@@ -1479,6 +1644,26 @@
 
     function findProduct(id) {
       return products.find((p) => p.id === id);
+    }
+
+    function createSparkles(button) {
+      for (let i = 0; i < 4; i++) {
+        const sparkle = document.createElement("span");
+        sparkle.className = "sparkle";
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 16 + Math.random() * 10;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance * -1; // un poco hacia arriba
+        sparkle.style.setProperty("--dx", dx + "px");
+        sparkle.style.setProperty("--dy", dy + "px");
+        const rect = button.getBoundingClientRect();
+        const x = rect.width / 2 + (Math.random() * 10 - 5);
+        const y = rect.height / 2 + (Math.random() * 6 - 3);
+        sparkle.style.left = x + "px";
+        sparkle.style.top = y + "px";
+        button.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 500);
+      }
     }
 
     function addToCart(id, button, event) {
@@ -1494,20 +1679,13 @@
       }
       saveCart(cart);
 
-      // ✨ Animaciones botón
       if (button) {
-        button.classList.remove("btn-add-pulse", "btn-add-ripple");
+        button.classList.remove("btn-add-pulse");
         void button.offsetWidth;
-        button.classList.add("btn-add-pulse", "btn-add-ripple");
-
-        const rect = button.getBoundingClientRect();
-        const x = event ? event.clientX - rect.left : button.offsetWidth / 2;
-        const y = event ? event.clientY - rect.top : button.offsetHeight / 2;
-        button.style.setProperty("--ripple-x", `${x}px`);
-        button.style.setProperty("--ripple-y", `${y}px`);
+        button.classList.add("btn-add-pulse");
+        createSparkles(button);
       }
 
-      // Etiqueta "Añadido"
       const card = button.closest(".product-card");
       const label = card.querySelector(".product-added-label");
       if (label) {
@@ -1614,9 +1792,7 @@
       cart.forEach((item) => {
         const product = findProduct(item.id);
         if (!product) return;
-        mensaje += `- ${product.nombre} (x${item.qty}) - S/ ${product.precio.toFixed(
-          2
-        )}%0A`;
+        mensaje += `- ${product.nombre} (x${item.qty}) - S/ ${product.precio.toFixed(2)}%0A`;
       });
 
       const { totalAmount } = calcTotals(cart);
@@ -1642,15 +1818,7 @@
       window.open(url, "_blank");
     }
 
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const y = el.getBoundingClientRect().top + window.scrollY - 20;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-
-    // FILTROS / RENDER CATALOGO
-
+    // Render catálogo con filtros de subcategorías
     function renderProducts() {
       const grid = document.getElementById("productsGrid");
       const countLabel = document.getElementById("productCountLabel");
@@ -1658,25 +1826,27 @@
 
       const search = (document.getElementById("searchInput").value || "").toLowerCase();
       const globalSearch = (document.getElementById("globalSearch").value || "").toLowerCase();
-      const activeChip = document.querySelector("#categoryChips .chip.active");
-      const category = activeChip ? activeChip.dataset.cat : "todos";
-
       const minPriceVal = parseFloat(document.getElementById("minPrice").value || "0");
       const maxPriceInput = document.getElementById("maxPrice").value;
       const maxPriceVal = maxPriceInput ? parseFloat(maxPriceInput) : Infinity;
-
       const promoActive = document.getElementById("promoChip").classList.contains("active");
       const sortValue = document.getElementById("sortSelect").value;
 
+      const checkedSubs = Array.from(
+        document.querySelectorAll(".subcategory-list input[type='checkbox']:checked")
+      ).map((el) => el.value);
+
       let filtered = products.filter((p) => {
-        if (category !== "todos" && p.categoria !== category) return false;
         if (promoActive && !p.oferta) return false;
         if (minPriceVal && p.precio < minPriceVal) return false;
         if (maxPriceInput && p.precio > maxPriceVal) return false;
 
+        if (checkedSubs.length && !checkedSubs.includes(p.subcategoria)) return false;
+
         const text = p.nombre.toLowerCase();
         if (search && !text.includes(search)) return false;
         if (globalSearch && !text.includes(globalSearch)) return false;
+
         return true;
       });
 
@@ -1723,7 +1893,6 @@
     }
 
     // Slider
-
     function initSlider() {
       const frame = document.getElementById("sliderFrame");
       if (!frame) return;
@@ -1755,14 +1924,20 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Filtros categorías
-      document.querySelectorAll("#categoryChips .chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          document.querySelectorAll("#categoryChips .chip").forEach((c) => c.classList.remove("active"));
-          chip.classList.add("active");
-          renderProducts();
+      // Acordeón de categorías
+      document.querySelectorAll(".category-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".category-item");
+          item.classList.toggle("open");
         });
       });
+
+      // Checkboxes subcategorías
+      document
+        .querySelectorAll(".subcategory-list input[type='checkbox']")
+        .forEach((cb) => {
+          cb.addEventListener("change", renderProducts);
+        });
 
       // Chip promo
       document.getElementById("promoChip").addEventListener("click", (e) => {
@@ -1770,7 +1945,7 @@
         renderProducts();
       });
 
-      // Inputs filtros
+      // Filtros de texto, precio y orden
       ["minPrice", "maxPrice", "searchInput", "globalSearch", "sortSelect"].forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1778,4 +1953,10 @@
         el.addEventListener("change", renderProducts);
       });
 
-      render
+      renderProducts();
+      updateCartUI();
+      initSlider();
+    });
+  </script>
+</body>
+</html>
