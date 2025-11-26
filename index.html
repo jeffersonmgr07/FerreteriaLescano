@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ferretería Lescano - Tu aliado en la construcción</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <!-- Aquí luego reemplazas por tu logo -->
+        <span class="logo-icon">FL</span>
+        <span class="logo-text">Ferretería Lescano</span>
+      </div>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">Inicio</a>
+        <a href="catalogo.html" class="nav-link">Catálogo</a>
+        <a href="#recompensas" class="nav-link">Recompensas</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#cotiza" class="btn btn-outline">Cotiza tu obra</a>
+        <div class="cart-icon" id="cart-icon">
+          🛒 <span class="cart-count" id="cart-count">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SLIDER / BANNER -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Todo para tu obra en un solo lugar</h1>
+        <p>
+          Ferretería Lescano es tu aliado en la construcción: materiales de calidad,
+          atención rápida y recompensas por cada compra.
+        </p>
+        <div class="hero-actions">
+          <a href="#cotiza" class="btn btn-primary">⚒️ Cotiza los materiales para tu obra</a>
+          <a href="catalogo.html" class="btn btn-secondary">Ver catálogo completo</a>
+        </div>
+      </div>
+
+      <div class="hero-slider">
+        <div class="slider" id="main-slider">
+          <div class="slide active" style="background-image: url('img/banner1.jpg')">
+            <div class="slide-overlay">
+              <h2>Ofertas en cementos y fierros</h2>
+              <p>Aprovecha precios especiales para tu proyecto.</p>
+            </div>
+          </div>
+          <div class="slide" style="background-image: url('img/banner2.jpg')">
+            <div class="slide-overlay">
+              <h2>Herramientas para profesionales</h2>
+              <p>Taladros, esmeriles, sierras y más.</p>
+            </div>
+          </div>
+          <div class="slide" style="background-image: url('img/banner3.jpg')">
+            <div class="slide-overlay">
+              <h2>Pinturas y acabados</h2>
+              <p>Dale el mejor acabado a tus ambientes.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS EN OFERTA -->
+  <section class="section" id="ofertas">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ofertas destacadas</h2>
+        <a href="catalogo.html" class="link">Ver todo el catálogo →</a>
+      </div>
+
+      <div class="products-grid" id="featured-products">
+        <!-- Se llena dinámicamente desde app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: FERRETERÍA LESCANO ES TU ALIADO (PLAN DE RECOMPENSAS) -->
+  <section class="section section-alt" id="recompensas">
+    <div class="container two-columns">
+      <div>
+        <h2>Ferretería Lescano: tu aliado en la construcción</h2>
+        <p>
+          Sabemos que construir o remodelar es una gran inversión. Por eso, en
+          <strong>Ferretería Lescano</strong> te acompañamos en cada etapa de tu obra
+          y premiamos tu preferencia con nuestro
+          <strong>Programa de Recompensas Lescano+</strong>.
+        </p>
+        <ul class="checklist">
+          <li><strong>1 punto por cada S/ 1 en compras.</strong></li>
+          <li><strong>Canjea puntos por descuentos</strong> en próximas compras.</li>
+          <li><strong>Bonos especiales</strong> por superar montos mensuales.</li>
+          <li><strong>Beneficios para maestros de obra</strong> y contratistas frecuentes.</li>
+          <li><strong>Premios por referidos:</strong> trae a tus amigos y ambos ganan.</li>
+        </ul>
+        <p>
+          Solo comparte tu número de WhatsApp en caja o en nuestras cotizaciones
+          y empezamos a registrar tus compras. ¡Mientras más construyes, más ganas!
+        </p>
+      </div>
+      <div class="card info-card">
+        <h3>¿Cómo empezar a acumular recompensas?</h3>
+        <ol class="numbered-list">
+          <li>Realiza tu compra en tienda o por WhatsApp.</li>
+          <li>Indica tu número de WhatsApp al momento de pagar.</li>
+          <li>Acumula puntos automáticamente en cada compra.</li>
+          <li>Canjea tus puntos cuando quieras por descuentos y premios.</li>
+        </ol>
+        <a href="#cotiza" class="btn btn-primary full-width">
+          Quiero cotizar y empezar a acumular
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: CONOCE MÁS DE FERRETERÍA LESCANO (VIDEO) -->
+  <section class="section" id="conoce-mas">
+    <div class="container two-columns">
+      <div>
+        <h2>Conoce más de Ferretería Lescano</h2>
+        <p>
+          Más de 10 años acompañando a familias, maestros de obra y empresas en
+          sus proyectos de construcción y remodelación.
+        </p>
+        <p>
+          Próximamente podrás ver aquí un video donde te mostraremos nuestra
+          tienda, servicios y cómo trabajamos para que tu obra avance sin parar.
+        </p>
+      </div>
+      <div class="video-placeholder">
+        <!-- Cuando tengas el video, reemplaza el iframe -->
+        <div class="video-ratio">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+            title="Ferretería Lescano"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p class="video-note">
+          Reemplaza <code>VIDEO_ID_AQUI</code> por el ID de tu video en YouTube.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: COTIZA LOS MATERIALES PARA TU OBRA -->
+  <section class="section section-highlight" id="cotiza">
+    <div class="container two-columns">
+      <div>
+        <h2>⚒️ Cotiza los materiales para tu obra</h2>
+        <p>
+          Cuéntanos qué necesitas y te ayudamos a armar la lista de materiales
+          con precio actualizado. Ideal para:
+        </p>
+        <ul class="checklist">
+          <li>Construcciones nuevas</li>
+          <li>Ampliaciones y remodelaciones</li>
+          <li>Trabajos de electricidad, gasfitería y pintura</li>
+        </ul>
+      </div>
+      <div class="card">
+        <form
+          id="quote-form"
+          onsubmit="enviarCotizacion(event)"
+          class="quote-form"
+        >
+          <label>
+            Nombre completo
+            <input type="text" id="nombre" required />
+          </label>
+          <label>
+            WhatsApp
+            <input type="tel" id="whatsapp" required />
+          </label>
+          <label>
+            Describe tu obra o los materiales que necesitas
+            <textarea id="detalle" rows="4" required></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary full-width">
+            Enviar cotización por WhatsApp
+          </button>
+          <small>
+            Se abrirá una conversación de WhatsApp con Ferretería Lescano
+            con tu mensaje listo para enviar.
+          </small>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO & REDES (igual que antes, pero con datos inventados) -->
+  <footer class="footer" id="contacto">
+    <div class="container footer-grid">
+      <div>
+        <h3>Contacto & redes</h3>
+        <p><strong>Ferretería Lescano</strong></p>
+        <p>Av. Principal 123, San Miguel, Lima - Perú</p>
+        <p>Horario: Lun - Sáb: 8:00 am - 7:00 pm</p>
+      </div>
+      <div>
+        <h4>Medios de contacto</h4>
+        <p>WhatsApp: <a href="https://wa.me/51987654321" target="_blank">+51 987 654 321</a></p>
+        <p>Teléfono: (01) 567-8901</p>
+        <p>Email: <a href="mailto:contacto@ferreterialescanoperu.com">contacto@ferreterialescanoperu.com</a></p>
+      </div>
+      <div>
+        <h4>Redes sociales</h4>
+        <p><a href="#">Facebook Ferretería Lescano</a></p>
+        <p><a href="#">Instagram @ferreteria_lescano</a></p>
+        <p><a href="#">TikTok @ferreteria_lescano</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Ferretería Lescano. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- PANEL SIMPLE DE CARRITO (OPCIONAL) -->
+  <div class="cart-panel" id="cart-panel">
+    <div class="cart-panel-inner">
+      <div class="cart-panel-header">
+        <h3>Carrito de compras</h3>
+        <button class="cart-close" onclick="toggleCart()">✕</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-panel-footer">
+        <p>Total: S/ <span id="cart-total">0.00</span></p>
+        <button class="btn btn-primary full-width" onclick="enviarCarritoWhatsApp()">
+          Enviar pedido por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
