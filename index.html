@@ -55,6 +55,11 @@
       padding: 16px 16px 48px;
     }
 
+    /* la primera sección (texto + header) sin padding abajo para pegar el banner */
+    .page:first-of-type {
+      padding-bottom: 0;
+    }
+
     /* HEADER */
 
     header {
@@ -173,7 +178,8 @@
     /* HERO TOP */
 
     .hero-top {
-      margin: 4px 0 0;
+      margin-top: 4px;
+      margin-bottom: 0; /* sin espacio debajo del título */
     }
 
     .hero-kicker {
@@ -197,13 +203,13 @@
       color: transparent;
     }
 
-    /* SLIDER FULL WIDTH */
+    /* SLIDER FULL WIDTH (pegado al texto) */
 
     .slider-section {
       width: 100vw;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
-      margin-top: -2px; /* casi sin espacio con el texto */
+      margin-top: 0;      /* ahora pegado al texto */
       margin-bottom: 20px;
     }
 
@@ -648,10 +654,9 @@
 
     .sparkle {
       position: absolute;
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      background: radial-gradient(circle, #ffffff, #facc15);
       pointer-events: none;
       opacity: 0;
       animation: sparkle 0.5s ease-out forwards;
@@ -701,6 +706,7 @@
       box-shadow: 0 14px 32px rgba(251, 128, 1, 0.7);
       z-index: 9999;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      overflow: visible;
     }
 
     .cart-button-fab:hover {
@@ -711,6 +717,26 @@
     .cart-button-fab .cart-mini-count {
       background: #ffffff;
       color: var(--secondary);
+    }
+
+    /* onda del carrito cuando se agrega un producto */
+    .cart-button-fab::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid rgba(251, 128, 1, 0.7);
+      opacity: 0;
+      transform: scale(1);
+    }
+
+    .cart-button-fab.ping::after {
+      animation: cart-ping 0.5s ease-out;
+    }
+
+    @keyframes cart-ping {
+      0%   { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 0;   transform: scale(1.7); }
     }
 
     .whatsapp-fab {
@@ -726,12 +752,34 @@
       justify-content: center;
       box-shadow: 0 12px 30px rgba(22, 163, 74, 0.6);
       z-index: 9999;
+      animation: wa-bounce 1.8s infinite ease-in-out;
+      overflow: visible;
     }
 
     .whatsapp-fab img {
       width: 26px;
       height: 26px;
       object-fit: contain;
+    }
+
+    .whatsapp-fab::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 2px solid rgba(22, 163, 74, 0.7);
+      opacity: 0;
+      animation: wa-wave 1.8s infinite ease-out;
+    }
+
+    @keyframes wa-wave {
+      0%   { transform: scale(1);   opacity: 0.6; }
+      100% { transform: scale(1.7); opacity: 0;   }
+    }
+
+    @keyframes wa-bounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-1px) scale(1.05); }
     }
 
     /* PANEL CARRITO LATERAL */
@@ -1174,7 +1222,7 @@
     </section>
   </div>
 
-  <!-- SLIDER FULL WIDTH (SIN ESPACIO CON EL TEXTO) -->
+  <!-- SLIDER FULL WIDTH (pegado al texto) -->
   <section class="slider-section">
     <div class="slider-inner">
       <div class="slider-frame" id="sliderFrame">
@@ -1591,44 +1639,44 @@
     const WHATSAPP_FERRETERIA = "51987654321";
     const CART_KEY = "ferreteria_cart";
 
-    // Productos de ejemplo (≈20), con categoría y subcategoría
+    // Productos de ejemplo (≈20+), con categoría y subcategoría
     const products = [
       // Cementos y agregados
       { id: 1,  nombre: "Cemento Portland Tipo I 42.5kg", categoria: "cementos", subcategoria: "cemento", precio: 32.9, oferta: true,  imagen: "img/cemento.jpg" },
-      { id: 2,  nombre: "Cemento Extra Resistente 50kg", categoria: "cementos", subcategoria: "cemento", precio: 39.5, oferta: false, imagen: "img/cemento-extra.jpg" },
+      { id: 2,  nombre: "Cemento Extra Resistente 50kg",   categoria: "cementos", subcategoria: "cemento", precio: 39.5, oferta: false, imagen: "img/cemento-extra.jpg" },
       { id: 3,  nombre: "Ladrillo King Kong 18 huecos",   categoria: "cementos", subcategoria: "ladrillos", precio: 1.3,  oferta: false, imagen: "img/ladrillo.jpg" },
-      { id: 4,  nombre: "Ladrillo pandereta",               categoria: "cementos", subcategoria: "ladrillos", precio: 1.1,  oferta: true,  imagen: "img/ladrillo-pandereta.jpg" },
-      { id: 5,  nombre: "Arena gruesa x m³",                categoria: "cementos", subcategoria: "arena-piedra", precio: 95.0, oferta: false, imagen: "img/arena.jpg" },
-      { id: 6,  nombre: "Piedra chancada x m³",             categoria: "cementos", subcategoria: "arena-piedra", precio: 110.0, oferta: false, imagen: "img/piedra.jpg" },
+      { id: 4,  nombre: "Ladrillo pandereta",             categoria: "cementos", subcategoria: "ladrillos", precio: 1.1,  oferta: true,  imagen: "img/ladrillo-pandereta.jpg" },
+      { id: 5,  nombre: "Arena gruesa x m³",              categoria: "cementos", subcategoria: "arena-piedra", precio: 95.0, oferta: false, imagen: "img/arena.jpg" },
+      { id: 6,  nombre: "Piedra chancada x m³",           categoria: "cementos", subcategoria: "arena-piedra", precio: 110.0, oferta: false, imagen: "img/piedra.jpg" },
 
       // Fierros y estructuras
-      { id: 7,  nombre: "Fierro corrugado 3/8\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 28.5, oferta: false, imagen: "img/fierro-3-8.jpg" },
-      { id: 8,  nombre: "Fierro corrugado 1/2\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 46.5, oferta: true,  imagen: "img/fierro.jpg" },
-      { id: 9,  nombre: "Malla electrosoldada 6mm",         categoria: "fierros", subcategoria: "mallas-alambres",   precio: 165.9, oferta: false, imagen: "img/malla.jpg" },
-      { id: 10, nombre: "Alambre recocido x kg",            categoria: "fierros", subcategoria: "mallas-alambres",   precio: 9.5,   oferta: true,  imagen: "img/alambre.jpg" },
+      { id: 7,  nombre: "Fierro corrugado 3/8\" x 9m",    categoria: "fierros", subcategoria: "fierro-corrugado", precio: 28.5, oferta: false, imagen: "img/fierro-3-8.jpg" },
+      { id: 8,  nombre: "Fierro corrugado 1/2\" x 9m",    categoria: "fierros", subcategoria: "fierro-corrugado", precio: 46.5, oferta: true,  imagen: "img/fierro.jpg" },
+      { id: 9,  nombre: "Malla electrosoldada 6mm",       categoria: "fierros", subcategoria: "mallas-alambres",   precio: 165.9, oferta: false, imagen: "img/malla.jpg" },
+      { id: 10, nombre: "Alambre recocido x kg",          categoria: "fierros", subcategoria: "mallas-alambres",   precio: 9.5,   oferta: true,  imagen: "img/alambre.jpg" },
 
       // Herramientas
-      { id: 11, nombre: "Taladro percutor 750W",            categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 259.9, oferta: false, imagen: "img/taladro.jpg" },
-      { id: 12, nombre: "Esmeril angular 4 1/2\"",          categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 199.9, oferta: true,  imagen: "img/esmeril.jpg" },
-      { id: 13, nombre: "Juego de destornilladores x 6",    categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 34.9,  oferta: false, imagen: "img/destornilladores.jpg" },
-      { id: 14, nombre: "Martillo uña carpintero 16oz",     categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 29.9,  oferta: false, imagen: "img/martillo.jpg" },
+      { id: 11, nombre: "Taladro percutor 750W",          categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 259.9, oferta: false, imagen: "img/taladro.jpg" },
+      { id: 12, nombre: "Esmeril angular 4 1/2\"",        categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 199.9, oferta: true,  imagen: "img/esmeril.jpg" },
+      { id: 13, nombre: "Juego de destornilladores x 6",  categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 34.9,  oferta: false, imagen: "img/destornilladores.jpg" },
+      { id: 14, nombre: "Martillo uña carpintero 16oz",   categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 29.9,  oferta: false, imagen: "img/martillo.jpg" },
 
       // Electricidad
       { id: 15, nombre: "Cable eléctrico 2x2.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 349.0, oferta: true,  imagen: "img/cable.jpg" },
-      { id: 16, nombre: "Cable mellizo 2x1.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 210.0, oferta: false, imagen: "img/cable-mellizo.jpg" },
-      { id: 17, nombre: "Foco LED 12W luz fría",            categoria: "electricidad", subcategoria: "iluminacion", precio: 8.9,   oferta: true,  imagen: "img/foco-led.jpg" },
-      { id: 18, nombre: "Reflector LED 50W exterior",       categoria: "electricidad", subcategoria: "iluminacion", precio: 89.9,  oferta: false, imagen: "img/reflector.jpg" },
+      { id: 16, nombre: "Cable mellizo 2x1.5mm rollo 100m",   categoria: "electricidad", subcategoria: "cables",      precio: 210.0, oferta: false, imagen: "img/cable-mellizo.jpg" },
+      { id: 17, nombre: "Foco LED 12W luz fría",          categoria: "electricidad", subcategoria: "iluminacion", precio: 8.9,   oferta: true,  imagen: "img/foco-led.jpg" },
+      { id: 18, nombre: "Reflector LED 50W exterior",     categoria: "electricidad", subcategoria: "iluminacion", precio: 89.9,  oferta: false, imagen: "img/reflector.jpg" },
 
       // Gasfitería
-      { id: 19, nombre: "Tubo PVC desagüe 4\" x 3m",        categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 38.5,  oferta: false, imagen: "img/tubo.jpg" },
-      { id: 20, nombre: "Tee PVC 1/2\" presión",            categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 2.5,   oferta: false, imagen: "img/tee.jpg" },
-      { id: 21, nombre: "Grifo lavadero monocomando",       categoria: "gasfiteria", subcategoria: "griferia",       precio: 129.9, oferta: true,  imagen: "img/grifo.jpg" },
+      { id: 19, nombre: "Tubo PVC desagüe 4\" x 3m",      categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 38.5,  oferta: false, imagen: "img/tubo.jpg" },
+      { id: 20, nombre: "Tee PVC 1/2\" presión",          categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 2.5,   oferta: false, imagen: "img/tee.jpg" },
+      { id: 21, nombre: "Grifo lavadero monocomando",     categoria: "gasfiteria", subcategoria: "griferia",       precio: 129.9, oferta: true,  imagen: "img/grifo.jpg" },
 
       // Pinturas y acabados
       { id: 22, nombre: "Pintura látex interior 1 galón blanco", categoria: "pinturas", subcategoria: "pinturas",    precio: 79.9,  oferta: false, imagen: "img/pintura.jpg" },
-      { id: 23, nombre: "Sellador acrílico 1 galón",        categoria: "pinturas", subcategoria: "pinturas",        precio: 69.9,  oferta: false, imagen: "img/sellador.jpg" },
-      { id: 24, nombre: "Rodillo para pintura 9\"",         categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 18.9, oferta: true,  imagen: "img/rodillo.jpg" },
-      { id: 25, nombre: "Brocha 2 1/2\" profesional",       categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 12.5, oferta: false, imagen: "img/brocha.jpg" }
+      { id: 23, nombre: "Sellador acrílico 1 galón",      categoria: "pinturas", subcategoria: "pinturas",        precio: 69.9,  oferta: false, imagen: "img/sellador.jpg" },
+      { id: 24, nombre: "Rodillo para pintura 9\"",       categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 18.9, oferta: true,  imagen: "img/rodillo.jpg" },
+      { id: 25, nombre: "Brocha 2 1/2\" profesional",     categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 12.5, oferta: false, imagen: "img/brocha.jpg" }
     ];
 
     function getCart() {
@@ -1646,21 +1694,32 @@
       return products.find((p) => p.id === id);
     }
 
+    // Puntitos de colores: naranja, dorado, gris, fucsia
     function createSparkles(button) {
-      for (let i = 0; i < 4; i++) {
+      const colors = ["#fb8001", "#f8c013", "#9ca3af", "#ec4899"];
+
+      for (let i = 0; i < 6; i++) {
         const sparkle = document.createElement("span");
         sparkle.className = "sparkle";
+
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.background = `radial-gradient(circle, #ffffff, ${color})`;
+
         const angle = Math.random() * Math.PI * 2;
-        const distance = 16 + Math.random() * 10;
+        const distance = 16 + Math.random() * 12;
         const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance * -1; // un poco hacia arriba
+        const dy = Math.sin(angle) * distance * -1;
+
         sparkle.style.setProperty("--dx", dx + "px");
         sparkle.style.setProperty("--dy", dy + "px");
+
         const rect = button.getBoundingClientRect();
-        const x = rect.width / 2 + (Math.random() * 10 - 5);
+        const x = rect.width / 2 + (Math.random() * 12 - 6);
         const y = rect.height / 2 + (Math.random() * 6 - 3);
+
         sparkle.style.left = x + "px";
         sparkle.style.top = y + "px";
+
         button.appendChild(sparkle);
         setTimeout(() => sparkle.remove(), 500);
       }
@@ -1679,6 +1738,15 @@
       }
       saveCart(cart);
 
+      // Animación del carrito flotante (onda)
+      const cartFab = document.querySelector(".cart-button-fab");
+      if (cartFab) {
+        cartFab.classList.remove("ping");
+        void cartFab.offsetWidth; // reinicia animación
+        cartFab.classList.add("ping");
+      }
+
+      // Animaciones botón agregar (pulse + puntitos)
       if (button) {
         button.classList.remove("btn-add-pulse");
         void button.offsetWidth;
@@ -1686,6 +1754,7 @@
         createSparkles(button);
       }
 
+      // Etiqueta "Añadido"
       const card = button.closest(".product-card");
       const label = card.querySelector(".product-added-label");
       if (label) {
@@ -1840,7 +1909,6 @@
         if (promoActive && !p.oferta) return false;
         if (minPriceVal && p.precio < minPriceVal) return false;
         if (maxPriceInput && p.precio > maxPriceVal) return false;
-
         if (checkedSubs.length && !checkedSubs.includes(p.subcategoria)) return false;
 
         const text = p.nombre.toLowerCase();
@@ -1861,102 +1929,4 @@
       grid.innerHTML = "";
       if (!filtered.length) {
         grid.innerHTML =
-          "<p style='font-size:0.9rem; color:#6b7280;'>No se encontraron productos con los filtros actuales.</p>";
-      } else {
-        filtered.forEach((p) => {
-          const card = document.createElement("article");
-          card.className = "product-card";
-          card.innerHTML = `
-            <div class="product-added-label">Añadido ✓</div>
-            <div class="product-image" style="background-image:url('${p.imagen}')"></div>
-            <div class="product-name">${p.nombre}</div>
-            <div class="product-category">Categoría: ${p.categoria}</div>
-            <div class="product-price-row">
-              <span class="product-price">S/ ${p.precio.toFixed(2)}</span>
-              ${p.oferta ? '<span class="product-badge">Oferta</span>' : ""}
-            </div>
-            <div class="product-cta">
-              <button class="btn-add" type="button">
-                <span>🛒 Agregar</span>
-              </button>
-            </div>
-          `;
-          const btn = card.querySelector(".btn-add");
-          btn.addEventListener("click", (ev) => addToCart(p.id, btn, ev));
-          grid.appendChild(card);
-        });
-      }
-
-      if (countLabel) {
-        countLabel.textContent = `${filtered.length} producto${filtered.length !== 1 ? "s" : ""}`;
-      }
-    }
-
-    // Slider
-    function initSlider() {
-      const frame = document.getElementById("sliderFrame");
-      if (!frame) return;
-      const slides = frame.querySelectorAll(".slide");
-      const dots = document.querySelectorAll(".slider-dot");
-      let current = 0;
-
-      function goTo(index) {
-        slides[current].classList.remove("active");
-        dots[current].classList.remove("active");
-        current = index;
-        slides[current].classList.add("active");
-        dots[current].classList.add("active");
-      }
-
-      dots.forEach((dot) => {
-        dot.addEventListener("click", () => {
-          const idx = parseInt(dot.dataset.index, 10);
-          goTo(idx);
-        });
-      });
-
-      setInterval(() => {
-        const next = (current + 1) % slides.length;
-        goTo(next);
-      }, 5000);
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // Acordeón de categorías
-      document.querySelectorAll(".category-toggle").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const item = btn.closest(".category-item");
-          item.classList.toggle("open");
-        });
-      });
-
-      // Checkboxes subcategorías
-      document
-        .querySelectorAll(".subcategory-list input[type='checkbox']")
-        .forEach((cb) => {
-          cb.addEventListener("change", renderProducts);
-        });
-
-      // Chip promo
-      document.getElementById("promoChip").addEventListener("click", (e) => {
-        e.currentTarget.classList.toggle("active");
-        renderProducts();
-      });
-
-      // Filtros de texto, precio y orden
-      ["minPrice", "maxPrice", "searchInput", "globalSearch", "sortSelect"].forEach((id) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener("input", renderProducts);
-        el.addEventListener("change", renderProducts);
-      });
-
-      renderProducts();
-      updateCartUI();
-      initSlider();
-    });
-  </script>
-</body>
-</html>
+          "<p style='font-size:0.9rem; color:#6b7280;'>No se encontraron productos con los filtros actuales
