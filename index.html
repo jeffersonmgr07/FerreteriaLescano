@@ -60,14 +60,45 @@
       padding-bottom: 0;
     }
 
-    /* HEADER */
+    /* BARRA PROMO TIPO PROMART */
+
+    .promo-bar {
+      width: 100%;
+      background: #111111;
+      color: #f9fafb;
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .promo-bar span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .promo-bar button {
+      border-radius: 999px;
+      border: 1px solid #f9fafb;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    /* HEADER PRINCIPAL */
 
     header {
       display: grid;
       grid-template-columns: auto minmax(0, 1.4fr) auto;
       gap: 12px;
       align-items: center;
-      margin-bottom: 12px;
+      margin-top: 8px;
+      margin-bottom: 6px;
     }
 
     .header-logo {
@@ -77,7 +108,7 @@
     }
 
     .header-logo img {
-      height: 64px;
+      height: 60px;
       object-fit: contain;
     }
 
@@ -109,6 +140,7 @@
       align-items: center;
       gap: 10px;
       justify-content: flex-end;
+      flex-wrap: nowrap;
     }
 
     .nav-link {
@@ -121,6 +153,7 @@
       background: transparent;
       transition: background var(--transition-fast), border var(--transition-fast),
         color var(--transition-fast), transform var(--transition-fast);
+      white-space: nowrap;
     }
 
     .nav-link:hover {
@@ -149,7 +182,7 @@
       color: #c05621;
     }
 
-    /* Botón WhatsApp en cabecera (con ondas) */
+    /* Botón WhatsApp en cabecera (círculo lleno + ondas) */
     .header-wa-link {
       width: 40px;
       height: 40px;
@@ -164,11 +197,12 @@
       position: relative;
       overflow: visible;
       animation: wa-bounce 1.8s infinite ease-in-out;
+      padding: 0;
     }
 
     .header-wa-link img {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       object-fit: contain;
     }
 
@@ -186,6 +220,35 @@
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(250, 154, 9, 0.5);
       background: #fff7db;
+    }
+
+    /* Fila gris: ubicación + cuenta (tipo Promart) */
+
+    .location-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin-bottom: 6px;
+    }
+
+    .location-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .location-item span {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      color: #fb8001;
     }
 
     /* HERO TOP */
@@ -686,31 +749,49 @@
       background: #ffffff;
     }
 
-    /* ✨ ANIMACIONES BOTÓN AGREGAR */
+    /* ✨ ANIMACIÓN DESTELLOS TIPO FARMASI (NARANJA / DORADO / MARRÓN / BLANCO) */
 
-    .btn-add-pulse {
-      animation: btn-pulse 0.22s ease-out;
-    }
-
-    @keyframes btn-pulse {
-      0% { transform: scale(1); }
-      40% { transform: scale(0.96); }
-      100% { transform: scale(1.04); }
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 999px;
+    .burst {
+      position: fixed;
       pointer-events: none;
-      opacity: 0;
-      animation: sparkle 0.6s ease-out forwards;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      z-index: 9998;
     }
 
-    @keyframes sparkle {
-      0% { opacity: 1; transform: translate(0, 0) scale(0.8); }
-      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(2.4); }
+    .burst span {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #ffe9d5 0, #fb923c 60%, transparent 100%);
+      animation: particle 0.7s ease-out forwards;
+      opacity: 0;
+    }
+
+    .burst span.gold {
+      background: radial-gradient(circle, #fef9c3 0, #facc15 60%, transparent 100%);
+    }
+
+    .burst span.brown {
+      background: radial-gradient(circle, #f5e6da 0, #92400e 60%, transparent 100%);
+    }
+
+    .burst span.white {
+      background: radial-gradient(circle, #ffffff 0, #e5e7eb 60%, transparent 100%);
+    }
+
+    @keyframes particle {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0.3);
+        opacity: 0;
+      }
     }
 
     .product-added-label {
@@ -733,7 +814,7 @@
       transform: translateY(0);
     }
 
-    /* BOTÓN CARRITO FLOTANTE */
+    /* BOTÓN CARRITO FLOTANTE (SOLO MONTO TOTAL) */
 
     .cart-button-fab {
       position: fixed;
@@ -760,11 +841,6 @@
       box-shadow: 0 18px 40px rgba(251, 128, 1, 0.8);
     }
 
-    .cart-button-fab .cart-mini-count {
-      background: #ffffff;
-      color: var(--secondary);
-    }
-
     .cart-button-fab::after {
       content: "";
       position: absolute;
@@ -784,7 +860,7 @@
       100% { opacity: 0;   transform: scale(1.7); }
     }
 
-    /* Ondas WhatsApp (usadas también en cabecera) */
+    /* Ondas WhatsApp */
 
     @keyframes wa-wave {
       0%   { transform: scale(1);   opacity: 0.7; }
@@ -1273,6 +1349,11 @@
         padding-inline: 12px;
       }
 
+      .promo-bar {
+        padding-inline: 12px;
+        font-size: 0.76rem;
+      }
+
       header {
         grid-template-columns: auto auto;
         grid-template-areas:
@@ -1288,6 +1369,10 @@
         grid-area: actions;
         justify-content: flex-end;
         flex-wrap: nowrap;
+      }
+
+      .header-logo img {
+        height: 48px;
       }
 
       .slider-inner {
@@ -1314,12 +1399,23 @@
         right: 10px;
         bottom: 14px;
       }
+
+      .location-row {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- HEADER -->
+    <!-- BARRA PROMO SUPERIOR -->
+    <div class="promo-bar">
+      <span>¡Encuentra las mejores ofertas para tu obra en Ferretería Lescano!</span>
+      <button type="button">Ver ofertas</button>
+    </div>
+
+    <!-- HEADER PRINCIPAL -->
     <header>
       <div class="header-logo">
         <img src="img/Logo1.png" alt="Ferretería Lescano" />
@@ -1330,7 +1426,7 @@
         <input
           type="text"
           id="globalSearch"
-          placeholder="Buscar en el catálogo (ej: cemento, taladro, pintura...)"
+          placeholder="¿Qué estás buscando? Cemento, fierro, taladro, pintura..."
         />
       </div>
 
@@ -1347,6 +1443,16 @@
         </a>
       </div>
     </header>
+
+    <!-- Fila gris tipo Promart -->
+    <div class="location-row">
+      <div class="location-item">
+        📍 <span>Selecciona tu ubicación</span>
+      </div>
+      <div class="location-item">
+        👤 <span>Mi cuenta y pedidos</span>
+      </div>
+    </div>
 
     <!-- HERO TOP -->
     <section class="hero-top">
@@ -1733,12 +1839,9 @@
     </footer>
   </div>
 
-  <!-- SIN WHATSAPP FLOTANTE INFERIOR -->
-
   <!-- CARRITO FLOTANTE -->
   <button class="cart-button-fab" type="button" onclick="toggleCart(true)">
     🛒 <span id="fabCartAmount">S/ 0.00</span>
-    <span class="cart-mini-count" id="fabCartCount">0</span>
   </button>
 
   <!-- PANEL CARRITO -->
@@ -2263,37 +2366,40 @@
       return products.find((p) => p.id === id);
     }
 
-    function createSparkles(button) {
-      const colors = ["#fb8001", "#f8c013", "#9ca3af", "#ec4899"];
+    // Animación destellos tipo Farmasi, colores adaptados
+    function createBurst(x, y) {
+      const burst = document.createElement("div");
+      burst.className = "burst";
+      burst.style.left = x + "px";
+      burst.style.top = y + "px";
 
-      for (let i = 0; i < 8; i++) {
-        const sparkle = document.createElement("span");
-        sparkle.className = "sparkle";
+      const particles = 24;
+      for (let i = 0; i < particles; i++) {
+        const p = document.createElement("span");
+        const angle = (2 * Math.PI / particles) * i;
+        const distance = 80 + Math.random() * 70;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        p.style.setProperty("--tx", tx + "px");
+        p.style.setProperty("--ty", ty + "px");
 
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        sparkle.style.background = color;
+        const r = Math.random();
+        if (r < 0.25) {
+          p.classList.add("gold");
+        } else if (r < 0.5) {
+          p.classList.add("brown");
+        } else if (r < 0.75) {
+          p.classList.add("white");
+        } // el resto queda naranja por defecto
 
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 28 + Math.random() * 26; // más radio, fuera del botón
-        const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance * -1;
-
-        sparkle.style.setProperty("--dx", dx + "px");
-        sparkle.style.setProperty("--dy", dy + "px");
-
-        const rect = button.getBoundingClientRect();
-        const x = rect.width / 2 + (Math.random() * 16 - 8);
-        const y = rect.height / 2 + (Math.random() * 10 - 5);
-
-        sparkle.style.left = x + "px";
-        sparkle.style.top = y + "px";
-
-        button.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 600);
+        burst.appendChild(p);
       }
+
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 750);
     }
 
-    function addToCart(id, button, event) {
+    function addToCart(id, button, evt) {
       const cart = getCart();
       const existing = cart.find((item) => item.id === id);
       const product = findProduct(id);
@@ -2317,7 +2423,10 @@
         button.classList.remove("btn-add-pulse");
         void button.offsetWidth;
         button.classList.add("btn-add-pulse");
-        createSparkles(button);
+      }
+
+      if (evt) {
+        createBurst(evt.clientX, evt.clientY);
       }
 
       const card = button.closest(".product-card");
@@ -2364,11 +2473,9 @@
       const { totalQty, totalAmount } = calcTotals(cart);
 
       const fabCartAmount = document.getElementById("fabCartAmount");
-      const fabCartCount = document.getElementById("fabCartCount");
       const cartTotal = document.getElementById("cartTotal");
 
       if (fabCartAmount) fabCartAmount.textContent = `S/ ${totalAmount.toFixed(2)}`;
-      if (fabCartCount) fabCartCount.textContent = totalQty;
       if (cartTotal) cartTotal.textContent = `S/ ${totalAmount.toFixed(2)}`;
 
       const itemsContainer = document.getElementById("cartItems");
