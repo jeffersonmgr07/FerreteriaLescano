@@ -23,6 +23,7 @@
       --radius-lg: 16px;
       --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.06);
       --transition-fast: 160ms ease-out;
+      --wave-color: #fa9a09;
     }
 
     * {
@@ -81,11 +82,6 @@
       object-fit: contain;
     }
 
-    .header-logo span {
-      font-weight: 700;
-      font-size: 1.02rem;
-    }
-
     .header-search {
       position: relative;
     }
@@ -142,38 +138,47 @@
       font-weight: 500;
     }
 
-    /* MINI CARRITO CABECERA */
-
-    .cart-mini {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid #fed7aa;
-      background: #fff7ed;
-      font-size: 0.82rem;
-      cursor: pointer;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    /* Iniciar sesión con borde naranja */
+    .login-btn {
+      border-color: var(--wave-color);
+      color: var(--wave-color);
     }
 
-    .cart-mini:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(251, 146, 60, 0.4);
+    .login-btn:hover {
+      background: #fff7db;
+      border-color: var(--wave-color);
+      color: #c05621;
     }
 
-    .cart-mini-count {
-      min-width: 18px;
-      height: 18px;
+    /* Botón WhatsApp en cabecera (reemplaza mini carrito) */
+    .header-wa-link {
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
       background: #ffffff;
-      color: var(--secondary);
-      font-size: 0.7rem;
-      display: flex;
+      border: 1px solid var(--wave-color);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
+      box-shadow: 0 8px 18px rgba(250, 154, 9, 0.35);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
     }
+
+    .header-wa-link img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    .header-wa-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(250, 154, 9, 0.5);
+      background: #fff7db;
+    }
+
+    /* MINI CARRITO CABECERA (YA NO SE USA, PERO SE MANTIENE POR SI LO REACTIVAMOS)
+    .cart-mini { ... }
+    */
 
     /* HERO TOP */
 
@@ -654,17 +659,17 @@
 
     .sparkle {
       position: absolute;
-      width: 7px;
-      height: 7px;
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
       pointer-events: none;
       opacity: 0;
-      animation: sparkle 0.5s ease-out forwards;
+      animation: sparkle 0.6s ease-out forwards;
     }
 
     @keyframes sparkle {
-      0% { opacity: 1; transform: translate(0, 0) scale(0.7); }
-      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.4); }
+      0% { opacity: 1; transform: translate(0, 0) scale(0.8); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(2); }
     }
 
     .product-added-label {
@@ -724,7 +729,7 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      border: 2px solid rgba(251, 128, 1, 0.7);
+      border: 2px solid rgba(250, 154, 9, 0.7);
       opacity: 0;
       transform: scale(1);
     }
@@ -734,7 +739,7 @@
     }
 
     @keyframes cart-ping {
-      0%   { opacity: 0.7; transform: scale(1);   }
+      0%   { opacity: 0.8; transform: scale(1);   }
       100% { opacity: 0;   transform: scale(1.7); }
     }
 
@@ -766,13 +771,13 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      border: 2px solid rgba(22, 163, 74, 0.7);
+      border: 2px solid rgba(250, 154, 9, 0.7); /* ondas naranja */
       opacity: 0;
       animation: wa-wave 1.8s infinite ease-out;
     }
 
     @keyframes wa-wave {
-      0%   { transform: scale(1);   opacity: 0.6; }
+      0%   { transform: scale(1);   opacity: 0.7; }
       100% { transform: scale(1.7); opacity: 0;   }
     }
 
@@ -1184,8 +1189,8 @@
     <!-- HEADER -->
     <header>
       <div class="header-logo">
-        <img src="img/logo-ferreteria-placeholder.png" alt="Ferretería Lescano" />
-        <span>Ferretería Lescano</span>
+        <!-- Nuevo logo completo -->
+        <img src="img/Logo1.png" alt="Ferretería Lescano" />
       </div>
 
       <div class="header-search">
@@ -1198,17 +1203,17 @@
       </div>
 
       <div class="header-actions">
-        <button class="nav-link" type="button" onclick="alert('Iniciar sesión estará disponible próximamente.')">
+        <button class="nav-link login-btn" type="button" onclick="alert('Iniciar sesión estará disponible próximamente.')">
           Iniciar sesión
         </button>
         <button class="nav-link primary" type="button" onclick="alert('Registro de usuarios estará disponible próximamente.')">
           Registrarse
         </button>
 
-        <button class="cart-mini" type="button" onclick="toggleCart(true)">
-          🛒 <span id="miniCartAmount">S/ 0.00</span>
-          <span class="cart-mini-count" id="miniCartCount">0</span>
-        </button>
+        <!-- Botón WhatsApp en cabecera -->
+        <a href="https://wa.me/51987654321" target="_blank" class="header-wa-link" aria-label="WhatsApp Ferretería Lescano">
+          <img src="img/logo-whatsapp.png" alt="WhatsApp" />
+        </a>
       </div>
     </header>
 
@@ -1591,6 +1596,8 @@
           <ul style="margin-top:8px;">
             <li><a href="#">Libro de reclamaciones</a></li>
           </ul>
+          <!-- Imagen del libro de reclamaciones -->
+          <img src="img/libro.png" alt="Libro de reclamaciones" style="margin-top:6px; max-width:140px;" />
         </div>
       </div>
     </section>
@@ -1696,15 +1703,15 @@
     function createSparkles(button) {
       const colors = ["#fb8001", "#f8c013", "#9ca3af", "#ec4899"]; // naranja, dorado, gris, fucsia
 
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 8; i++) {
         const sparkle = document.createElement("span");
         sparkle.className = "sparkle";
 
         const color = colors[Math.floor(Math.random() * colors.length)];
-        sparkle.style.background = `radial-gradient(circle, #ffffff, ${color})`;
+        sparkle.style.background = color;
 
         const angle = Math.random() * Math.PI * 2;
-        const distance = 16 + Math.random() * 12;
+        const distance = 24 + Math.random() * 22; // radio más amplio
         const dx = Math.cos(angle) * distance;
         const dy = Math.sin(angle) * distance * -1;
 
@@ -1712,14 +1719,14 @@
         sparkle.style.setProperty("--dy", dy + "px");
 
         const rect = button.getBoundingClientRect();
-        const x = rect.width / 2 + (Math.random() * 12 - 6);
-        const y = rect.height / 2 + (Math.random() * 6 - 3);
+        const x = rect.width / 2 + (Math.random() * 16 - 8);
+        const y = rect.height / 2 + (Math.random() * 10 - 5);
 
         sparkle.style.left = x + "px";
         sparkle.style.top = y + "px";
 
         button.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 500);
+        setTimeout(() => sparkle.remove(), 600);
       }
     }
 
@@ -1794,15 +1801,11 @@
       const cart = getCart();
       const { totalQty, totalAmount } = calcTotals(cart);
 
-      const miniCartAmount = document.getElementById("miniCartAmount");
-      const miniCartCount = document.getElementById("miniCartCount");
       const fabCartAmount = document.getElementById("fabCartAmount");
       const fabCartCount = document.getElementById("fabCartCount");
       const cartTotal = document.getElementById("cartTotal");
 
-      if (miniCartAmount) miniCartAmount.textContent = `S/ ${totalAmount.toFixed(2)}`;
       if (fabCartAmount) fabCartAmount.textContent = `S/ ${totalAmount.toFixed(2)}`;
-      if (miniCartCount) miniCartCount.textContent = totalQty;
       if (fabCartCount) fabCartCount.textContent = totalQty;
       if (cartTotal) cartTotal.textContent = `S/ ${totalAmount.toFixed(2)}`;
 
