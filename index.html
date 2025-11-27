@@ -56,7 +56,6 @@
       padding: 16px 16px 48px;
     }
 
-    /* primera sección sin espacio debajo (para pegar el banner) */
     .page:first-of-type {
       padding-bottom: 0;
     }
@@ -150,7 +149,7 @@
       color: #c05621;
     }
 
-    /* Botón WhatsApp en cabecera (reemplaza mini carrito) */
+    /* Botón WhatsApp en cabecera (con ondas) */
     .header-wa-link {
       width: 40px;
       height: 40px;
@@ -162,6 +161,9 @@
       justify-content: center;
       box-shadow: 0 8px 18px rgba(250, 154, 9, 0.35);
       transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      position: relative;
+      overflow: visible;
+      animation: wa-bounce 1.8s infinite ease-in-out;
     }
 
     .header-wa-link img {
@@ -170,21 +172,27 @@
       object-fit: contain;
     }
 
+    .header-wa-link::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      border: 2px solid rgba(250, 154, 9, 0.7);
+      opacity: 0;
+      animation: wa-wave 1.8s infinite ease-out;
+    }
+
     .header-wa-link:hover {
       transform: translateY(-1px);
       box-shadow: 0 12px 26px rgba(250, 154, 9, 0.5);
       background: #fff7db;
     }
 
-    /* MINI CARRITO CABECERA (YA NO SE USA, PERO SE MANTIENE POR SI LO REACTIVAMOS)
-    .cart-mini { ... }
-    */
-
     /* HERO TOP */
 
     .hero-top {
       margin-top: 4px;
-      margin-bottom: 0; /* sin espacio debajo del título */
+      margin-bottom: 0;
     }
 
     .hero-kicker {
@@ -214,7 +222,7 @@
       width: 100vw;
       margin-left: calc(50% - 50vw);
       margin-right: calc(50% - 50vw);
-      margin-top: 0;     /* pegado al texto */
+      margin-top: 0;
       margin-bottom: 20px;
     }
 
@@ -302,7 +310,7 @@
       margin-top: 6px;
     }
 
-    /* SIDEBAR CON CATEGORÍAS DESPLEGABLES */
+    /* SIDEBAR */
 
     .sidebar {
       background: #ffffff;
@@ -593,17 +601,30 @@
       margin-bottom: 4px;
     }
 
+    .product-short {
+      font-size: 0.8rem;
+      color: #4b5563;
+      margin-bottom: 6px;
+    }
+
     .product-price-row {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 6px;
       gap: 6px;
+      flex-wrap: wrap;
     }
 
     .product-price {
       font-weight: 700;
       color: #b45309;
+    }
+
+    .product-price-normal {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      text-decoration: line-through;
     }
 
     .product-badge {
@@ -616,26 +637,33 @@
 
     .product-cta {
       margin-top: auto;
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
     }
 
-    .btn-add {
-      width: 100%;
+    .btn-add,
+    .btn-secondary {
+      flex: 1;
       padding: 7px 10px;
       border-radius: 999px;
-      border: 1px solid #fed7aa;
-      background: linear-gradient(135deg, #fffbeb, #fff7ed);
+      font-size: 0.82rem;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      font-size: 0.82rem;
-      cursor: pointer;
-      color: #92400e;
-      font-weight: 500;
       position: relative;
       overflow: hidden;
       transition: transform var(--transition-fast), box-shadow var(--transition-fast),
         background var(--transition-fast), border var(--transition-fast);
+    }
+
+    .btn-add {
+      border: 1px solid #fed7aa;
+      background: linear-gradient(135deg, #fffbeb, #fff7ed);
+      color: #92400e;
+      font-weight: 500;
     }
 
     .btn-add:hover {
@@ -645,7 +673,20 @@
       background: linear-gradient(135deg, #fef3c7, #ffedd5);
     }
 
-    /* ✨ ANIMACIONES BOTÓN AGREGAR (PULSE + DESTELLOS COLORES) */
+    .btn-secondary {
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #374151;
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(148, 163, 184, 0.3);
+      border-color: #d1d5db;
+      background: #ffffff;
+    }
+
+    /* ✨ ANIMACIONES BOTÓN AGREGAR */
 
     .btn-add-pulse {
       animation: btn-pulse 0.22s ease-out;
@@ -659,8 +700,8 @@
 
     .sparkle {
       position: absolute;
-      width: 9px;
-      height: 9px;
+      width: 5px;
+      height: 5px;
       border-radius: 999px;
       pointer-events: none;
       opacity: 0;
@@ -669,7 +710,7 @@
 
     @keyframes sparkle {
       0% { opacity: 1; transform: translate(0, 0) scale(0.8); }
-      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(2); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(2.4); }
     }
 
     .product-added-label {
@@ -692,7 +733,7 @@
       transform: translateY(0);
     }
 
-    /* BOTONES FLOTANTES: CARRITO + WHATSAPP */
+    /* BOTÓN CARRITO FLOTANTE */
 
     .cart-button-fab {
       position: fixed;
@@ -743,38 +784,7 @@
       100% { opacity: 0;   transform: scale(1.7); }
     }
 
-    .whatsapp-fab {
-      position: fixed;
-      right: 14px;
-      bottom: 70px;
-      width: 46px;
-      height: 46px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #facc15, #16a34a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 12px 30px rgba(22, 163, 74, 0.6);
-      z-index: 9999;
-      overflow: visible;
-      animation: wa-bounce 1.8s infinite ease-in-out;
-    }
-
-    .whatsapp-fab img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-    }
-
-    .whatsapp-fab::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border: 2px solid rgba(250, 154, 9, 0.7); /* ondas naranja */
-      opacity: 0;
-      animation: wa-wave 1.8s infinite ease-out;
-    }
+    /* Ondas WhatsApp (usadas también en cabecera) */
 
     @keyframes wa-wave {
       0%   { transform: scale(1);   opacity: 0.7; }
@@ -786,7 +796,7 @@
       50%      { transform: translateY(-1px) scale(1.05); }
     }
 
-    /* PANEL CARRITO LATERAL */
+    /* PANEL CARRITO */
 
     .cart-panel-backdrop {
       position: fixed;
@@ -900,7 +910,128 @@
       filter: brightness(1.05);
     }
 
-    /* BLOQUES INFORMATIVOS / COTIZA / VIDEO */
+    /* MODAL VER MÁS PRODUCTO */
+
+    .product-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .product-modal-backdrop.open {
+      display: flex;
+    }
+
+    .product-modal {
+      width: 100%;
+      max-width: 640px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(15, 23, 42, 0.6);
+      padding: 14px 16px 14px;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .product-modal-close {
+      position: absolute;
+      right: 10px;
+      top: 8px;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    .product-modal-header {
+      margin-right: 28px;
+    }
+
+    .product-modal-header h3 {
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+
+    .product-modal-category {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .product-modal-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .product-modal-image {
+      width: 100%;
+      padding-top: 80%;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      background-color: #f3f4f6;
+    }
+
+    .product-modal-short {
+      font-size: 0.86rem;
+      color: #4b5563;
+      margin-bottom: 6px;
+    }
+
+    .product-modal-long {
+      font-size: 0.84rem;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    .product-modal-long strong {
+      font-weight: 600;
+    }
+
+    .product-modal-usage {
+      font-size: 0.84rem;
+      color: #4b5563;
+      margin-bottom: 6px;
+    }
+
+    .product-modal-variants {
+      font-size: 0.84rem;
+      color: #374151;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .variant-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+    }
+
+    .variant-pill::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--variant-color, #e5e7eb);
+      border: 1px solid #d1d5db;
+    }
+
+    /* INFO / COTIZA / VIDEO */
 
     .info-section {
       margin-top: 28px;
@@ -1017,7 +1148,7 @@
       filter: brightness(1.05);
     }
 
-    /* CONTACTO & FOOTER (INSPIRADO EN PROMART) */
+    /* CONTACTO & FOOTER */
 
     .contact-section {
       margin-top: 26px;
@@ -1124,16 +1255,6 @@
     /* RESPONSIVE */
 
     @media (max-width: 960px) {
-      header {
-        grid-template-columns: 1fr;
-        align-items: flex-start;
-      }
-
-      .header-actions {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-
       .layout {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -1150,6 +1271,23 @@
     @media (max-width: 720px) {
       .page {
         padding-inline: 12px;
+      }
+
+      header {
+        grid-template-columns: auto auto;
+        grid-template-areas:
+          "logo actions"
+          "search search";
+        row-gap: 8px;
+        align-items: center;
+      }
+
+      .header-logo { grid-area: logo; }
+      .header-search { grid-area: search; }
+      .header-actions {
+        grid-area: actions;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
       }
 
       .slider-inner {
@@ -1176,11 +1314,6 @@
         right: 10px;
         bottom: 14px;
       }
-
-      .whatsapp-fab {
-        right: 10px;
-        bottom: 66px;
-      }
     }
   </style>
 </head>
@@ -1189,7 +1322,6 @@
     <!-- HEADER -->
     <header>
       <div class="header-logo">
-        <!-- Nuevo logo completo -->
         <img src="img/Logo1.png" alt="Ferretería Lescano" />
       </div>
 
@@ -1210,7 +1342,6 @@
           Registrarse
         </button>
 
-        <!-- Botón WhatsApp en cabecera -->
         <a href="https://wa.me/51987654321" target="_blank" class="header-wa-link" aria-label="WhatsApp Ferretería Lescano">
           <img src="img/logo-whatsapp.png" alt="WhatsApp" />
         </a>
@@ -1226,7 +1357,7 @@
     </section>
   </div>
 
-  <!-- SLIDER FULL WIDTH -->
+  <!-- SLIDER -->
   <section class="slider-section">
     <div class="slider-inner">
       <div class="slider-frame" id="sliderFrame">
@@ -1279,7 +1410,6 @@
       <aside class="sidebar">
         <div class="sidebar-title">Filtrar productos</div>
 
-        <!-- Categorías desplegables + subcategorías con checkboxes -->
         <div class="filter-group">
           <div class="filter-label">Categorías</div>
           <div class="category-accordion">
@@ -1352,7 +1482,6 @@
           </div>
         </div>
 
-        <!-- Rango de precio -->
         <div class="filter-group">
           <div class="filter-label">Rango de precio</div>
           <div class="filter-range">
@@ -1362,7 +1491,6 @@
           <div class="sidebar-note">Opcional. En soles (S/).</div>
         </div>
 
-        <!-- Promociones -->
         <div class="filter-group">
           <div class="filter-label">Promociones</div>
           <div class="filter-chips">
@@ -1410,9 +1538,7 @@
           </div>
         </div>
 
-        <div class="products-grid" id="productsGrid">
-          <!-- JS -->
-        </div>
+        <div class="products-grid" id="productsGrid"></div>
       </div>
     </section>
 
@@ -1509,7 +1635,7 @@
       </div>
     </section>
 
-    <!-- CONTACTO & FOOTER TIPO PROMART PERO LOCAL -->
+    <!-- CONTACTO & FOOTER -->
     <section class="contact-section" id="contacto">
       <h2 class="contact-section-title">Contáctanos</h2>
 
@@ -1596,7 +1722,6 @@
           <ul style="margin-top:8px;">
             <li><a href="#">Libro de reclamaciones</a></li>
           </ul>
-          <!-- Imagen del libro de reclamaciones -->
           <img src="img/libro.png" alt="Libro de reclamaciones" style="margin-top:6px; max-width:140px;" />
         </div>
       </div>
@@ -1608,11 +1733,9 @@
     </footer>
   </div>
 
-  <!-- BOTONES FLOTANTES -->
-  <a href="https://wa.me/51987654321" target="_blank" class="whatsapp-fab" aria-label="WhatsApp Ferretería Lescano">
-    <img src="img/Logo whatsapp 2.png" alt="WhatsApp" />
-  </a>
+  <!-- SIN WHATSAPP FLOTANTE INFERIOR -->
 
+  <!-- CARRITO FLOTANTE -->
   <button class="cart-button-fab" type="button" onclick="toggleCart(true)">
     🛒 <span id="fabCartAmount">S/ 0.00</span>
     <span class="cart-mini-count" id="fabCartCount">0</span>
@@ -1641,48 +1764,488 @@
     </div>
   </div>
 
+  <!-- MODAL VER MÁS PRODUCTO -->
+  <div class="product-modal-backdrop" id="productModal" onclick="backdropClick(event)">
+    <div class="product-modal">
+      <button class="product-modal-close" type="button" onclick="closeProductModal()">✕</button>
+      <div id="productModalBody"></div>
+    </div>
+  </div>
+
   <script>
     const WHATSAPP_FERRETERIA = "51987654321";
     const CART_KEY = "ferreteria_cart";
 
-    // Productos de ejemplo (≈20), con categoría y subcategoría
+    // Productos de ejemplo con estructura extendida
     const products = [
       // Cementos y agregados
-      { id: 1,  nombre: "Cemento Portland Tipo I 42.5kg", categoria: "cementos", subcategoria: "cemento", precio: 32.9, oferta: true,  imagen: "img/cemento.jpg" },
-      { id: 2,  nombre: "Cemento Extra Resistente 50kg", categoria: "cementos", subcategoria: "cemento", precio: 39.5, oferta: false, imagen: "img/cemento-extra.jpg" },
-      { id: 3,  nombre: "Ladrillo King Kong 18 huecos",   categoria: "cementos", subcategoria: "ladrillos", precio: 1.3,  oferta: false, imagen: "img/ladrillo.jpg" },
-      { id: 4,  nombre: "Ladrillo pandereta",               categoria: "cementos", subcategoria: "ladrillos", precio: 1.1,  oferta: true,  imagen: "img/ladrillo-pandereta.jpg" },
-      { id: 5,  nombre: "Arena gruesa x m³",                categoria: "cementos", subcategoria: "arena-piedra", precio: 95.0, oferta: false, imagen: "img/arena.jpg" },
-      { id: 6,  nombre: "Piedra chancada x m³",             categoria: "cementos", subcategoria: "arena-piedra", precio: 110.0, oferta: false, imagen: "img/piedra.jpg" },
+      {
+        id: 1,
+        name: "Cemento Portland Tipo I 42.5kg",
+        shortDescription: "Bolsa de cemento para estructuras, columnas y losas.",
+        descriptionLong: `
+          <strong>Cemento Portland Tipo I 42.5kg</strong><br/>
+          Ideal para estructuras de vivienda (cimientos, columnas, vigas y losas).<br/><br/>
+          Diseñado para brindar buena resistencia y trabajabilidad en obra.
+        `,
+        usage: "Usar siguiendo la dosificación recomendada por el ingeniero o maestro de obra.",
+        price: 32.9,
+        normalPrice: 36.9,
+        image: "img/cemento.jpg",
+        categories: ["Cementos y agregados", "Cemento"],
+        categoria: "cementos",
+        subcategoria: "cemento",
+        oferta: true,
+        variants: [{ label: "Bolsa 42.5kg", color: "#e5e7eb" }]
+      },
+      {
+        id: 2,
+        name: "Cemento Extra Resistente 50kg",
+        shortDescription: "Cemento para obras exigentes y alto tránsito.",
+        descriptionLong: `
+          <strong>Cemento Extra Resistente 50kg</strong><br/>
+          Recomendado para superficies expuestas a alto desgaste como pisos y veredas.
+        `,
+        usage: "Ideal para mezclas de concreto y tarrajeo de alta exigencia.",
+        price: 39.5,
+        normalPrice: 44.9,
+        image: "img/cemento-extra.jpg",
+        categories: ["Cementos y agregados", "Cemento"],
+        categoria: "cementos",
+        subcategoria: "cemento",
+        oferta: false,
+        variants: [{ label: "Bolsa 50kg", color: "#e5e7eb" }]
+      },
+      {
+        id: 3,
+        name: "Ladrillo King Kong 18 huecos",
+        shortDescription: "Ladrillo estructural para muros portantes.",
+        descriptionLong: `
+          <strong>Ladrillo King Kong 18 huecos</strong><br/>
+          Alternativa para muros estructurales y divisiones con buena resistencia.
+        `,
+        usage: "Usar con mortero de cemento y arena según especificaciones de obra.",
+        price: 1.3,
+        normalPrice: 1.5,
+        image: "img/ladrillo.jpg",
+        categories: ["Cementos y agregados", "Ladrillos"],
+        categoria: "cementos",
+        subcategoria: "ladrillos",
+        oferta: false,
+        variants: [{ label: "Unidad estándar", color: "#f97316" }]
+      },
+      {
+        id: 4,
+        name: "Ladrillo pandereta",
+        shortDescription: "Ladrillo liviano para tabiques interiores.",
+        descriptionLong: `
+          <strong>Ladrillo pandereta</strong><br/>
+          Ideal para muros divisorios interiores, livianos y fáciles de trabajar.
+        `,
+        usage: "Para tabiquería interior sin función estructural.",
+        price: 1.1,
+        normalPrice: 1.3,
+        image: "img/ladrillo-pandereta.jpg",
+        categories: ["Cementos y agregados", "Ladrillos"],
+        categoria: "cementos",
+        subcategoria: "ladrillos",
+        oferta: true,
+        variants: [{ label: "Unidad estándar", color: "#fb923c" }]
+      },
+      {
+        id: 5,
+        name: "Arena gruesa x m³",
+        shortDescription: "Arena para concreto y tarrajeo.",
+        descriptionLong: `
+          <strong>Arena gruesa por metro cúbico</strong><br/>
+          Usada en mezclas de concreto, sobrecimientos y tarrajeos.
+        `,
+        usage: "Mezclar con cemento y piedra según dosificación de obra.",
+        price: 95.0,
+        normalPrice: 105.0,
+        image: "img/arena.jpg",
+        categories: ["Cementos y agregados", "Arena & Piedra"],
+        categoria: "cementos",
+        subcategoria: "arena-piedra",
+        oferta: false,
+        variants: [{ label: "m³", color: "#facc15" }]
+      },
+      {
+        id: 6,
+        name: "Piedra chancada x m³",
+        shortDescription: "Piedra para concreto armado.",
+        descriptionLong: `
+          <strong>Piedra chancada por metro cúbico</strong><br/>
+          Ideal para concreto ciclópeo y armado en estructuras.
+        `,
+        usage: "Usar junto con cemento y arena para concreto estructural.",
+        price: 110.0,
+        normalPrice: 120.0,
+        image: "img/piedra.jpg",
+        categories: ["Cementos y agregados", "Arena & Piedra"],
+        categoria: "cementos",
+        subcategoria: "arena-piedra",
+        oferta: false,
+        variants: [{ label: "m³", color: "#9ca3af" }]
+      },
 
       // Fierros y estructuras
-      { id: 7,  nombre: "Fierro corrugado 3/8\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 28.5, oferta: false, imagen: "img/fierro-3-8.jpg" },
-      { id: 8,  nombre: "Fierro corrugado 1/2\" x 9m",      categoria: "fierros", subcategoria: "fierro-corrugado", precio: 46.5, oferta: true,  imagen: "img/fierro.jpg" },
-      { id: 9,  nombre: "Malla electrosoldada 6mm",         categoria: "fierros", subcategoria: "mallas-alambres",   precio: 165.9, oferta: false, imagen: "img/malla.jpg" },
-      { id: 10, nombre: "Alambre recocido x kg",            categoria: "fierros", subcategoria: "mallas-alambres",   precio: 9.5,   oferta: true,  imagen: "img/alambre.jpg" },
+      {
+        id: 7,
+        name: "Fierro corrugado 3/8\" x 9m",
+        shortDescription: "Barra de acero para refuerzo ligero.",
+        descriptionLong: `
+          <strong>Fierro corrugado 3/8&quot; x 9m</strong><br/>
+          Usado en losas aligeradas, vigas y elementos de refuerzo.
+        `,
+        usage: "Cortar y doblar según plano estructural.",
+        price: 28.5,
+        normalPrice: 31.9,
+        image: "img/fierro-3-8.jpg",
+        categories: ["Fierros y estructuras", "Fierro corrugado"],
+        categoria: "fierros",
+        subcategoria: "fierro-corrugado",
+        oferta: false,
+        variants: [{ label: "3/8\" x 9m", color: "#9ca3af" }]
+      },
+      {
+        id: 8,
+        name: "Fierro corrugado 1/2\" x 9m",
+        shortDescription: "Refuerzo principal para columnas y vigas.",
+        descriptionLong: `
+          <strong>Fierro corrugado 1/2&quot; x 9m</strong><br/>
+          Recomendado para columnas, vigas y elementos estructurales principales.
+        `,
+        usage: "Instalar según diseño estructural del ingeniero.",
+        price: 46.5,
+        normalPrice: 51.9,
+        image: "img/fierro.jpg",
+        categories: ["Fierros y estructuras", "Fierro corrugado"],
+        categoria: "fierros",
+        subcategoria: "fierro-corrugado",
+        oferta: true,
+        variants: [{ label: "1/2\" x 9m", color: "#6b7280" }]
+      },
+      {
+        id: 9,
+        name: "Malla electrosoldada 6mm",
+        shortDescription: "Malla para losas y pisos.",
+        descriptionLong: `
+          <strong>Malla electrosoldada 6mm</strong><br/>
+          Facilita el armado de losas y pisos de concreto, reduciendo tiempos de obra.
+        `,
+        usage: "Colocar sobre separadores antes del vaciado de concreto.",
+        price: 165.9,
+        normalPrice: 179.9,
+        image: "img/malla.jpg",
+        categories: ["Fierros y estructuras", "Mallas y alambres"],
+        categoria: "fierros",
+        subcategoria: "mallas-alambres",
+        oferta: false,
+        variants: [{ label: "Panel estándar", color: "#9ca3af" }]
+      },
+      {
+        id: 10,
+        name: "Alambre recocido x kg",
+        shortDescription: "Para amarres de fierro en obra.",
+        descriptionLong: `
+          <strong>Alambre recocido</strong><br/>
+          Usado para amarrar fierros y mallas, indispensable en estructura.
+        `,
+        usage: "Cortar y usar con alicate de amarre.",
+        price: 9.5,
+        normalPrice: 10.9,
+        image: "img/alambre.jpg",
+        categories: ["Fierros y estructuras", "Mallas y alambres"],
+        categoria: "fierros",
+        subcategoria: "mallas-alambres",
+        oferta: true,
+        variants: [{ label: "1 kg", color: "#6b7280" }]
+      },
 
       // Herramientas
-      { id: 11, nombre: "Taladro percutor 750W",            categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 259.9, oferta: false, imagen: "img/taladro.jpg" },
-      { id: 12, nombre: "Esmeril angular 4 1/2\"",          categoria: "herramientas", subcategoria: "herramientas-electricas", precio: 199.9, oferta: true,  imagen: "img/esmeril.jpg" },
-      { id: 13, nombre: "Juego de destornilladores x 6",    categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 34.9,  oferta: false, imagen: "img/destornilladores.jpg" },
-      { id: 14, nombre: "Martillo uña carpintero 16oz",     categoria: "herramientas", subcategoria: "herramientas-manuales",   precio: 29.9,  oferta: false, imagen: "img/martillo.jpg" },
+      {
+        id: 11,
+        name: "Taladro percutor 750W",
+        shortDescription: "Taladro para concreto, metal y madera.",
+        descriptionLong: `
+          <strong>Taladro percutor 750W</strong><br/>
+          Ideal para trabajos de instalación en casa y obra, con función percutor.
+        `,
+        usage: "Usar con brocas adecuadas y siempre con protección personal.",
+        price: 259.9,
+        normalPrice: 289.9,
+        image: "img/taladro.jpg",
+        categories: ["Herramientas", "Herramientas eléctricas"],
+        categoria: "herramientas",
+        subcategoria: "herramientas-electricas",
+        oferta: false,
+        variants: [
+          { label: "110V", color: "#60a5fa" },
+          { label: "220V", color: "#3b82f6" }
+        ]
+      },
+      {
+        id: 12,
+        name: "Esmeril angular 4 1/2\"",
+        shortDescription: "Corte y desbaste de metal y concreto.",
+        descriptionLong: `
+          <strong>Esmeril angular 4 1/2&quot;</strong><br/>
+          Herramienta versátil para cortes y desbaste en obra y taller.
+        `,
+        usage: "Usar disco adecuado y elementos de seguridad (guantes, lentes).",
+        price: 199.9,
+        normalPrice: 229.9,
+        image: "img/esmeril.jpg",
+        categories: ["Herramientas", "Herramientas eléctricas"],
+        categoria: "herramientas",
+        subcategoria: "herramientas-electricas",
+        oferta: true,
+        variants: [{ label: "850W", color: "#4b5563" }]
+      },
+      {
+        id: 13,
+        name: "Juego de destornilladores x 6",
+        shortDescription: "Set básico para instalaciones y reparaciones.",
+        descriptionLong: `
+          <strong>Juego de destornilladores x 6</strong><br/>
+          Puntas planas y de cruz para usos generales en casa y obra.
+        `,
+        usage: "Usar en tornillos compatibles, evita forzar las puntas.",
+        price: 34.9,
+        normalPrice: 39.9,
+        image: "img/destornilladores.jpg",
+        categories: ["Herramientas", "Herramientas manuales"],
+        categoria: "herramientas",
+        subcategoria: "herramientas-manuales",
+        oferta: false,
+        variants: [{ label: "6 piezas", color: "#facc15" }]
+      },
+      {
+        id: 14,
+        name: "Martillo uña carpintero 16oz",
+        shortDescription: "Martillo clásico para clavar y retirar clavos.",
+        descriptionLong: `
+          <strong>Martillo uña carpintero 16oz</strong><br/>
+          Herramienta básica para cualquier maestro o bricolaje en casa.
+        `,
+        usage: "Usar para clavar y retirar clavos con cuidado.",
+        price: 29.9,
+        normalPrice: 34.9,
+        image: "img/martillo.jpg",
+        categories: ["Herramientas", "Herramientas manuales"],
+        categoria: "herramientas",
+        subcategoria: "herramientas-manuales",
+        oferta: false,
+        variants: [{ label: "Mango fibra de vidrio", color: "#f97316" }]
+      },
 
       // Electricidad
-      { id: 15, nombre: "Cable eléctrico 2x2.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 349.0, oferta: true,  imagen: "img/cable.jpg" },
-      { id: 16, nombre: "Cable mellizo 2x1.5mm rollo 100m", categoria: "electricidad", subcategoria: "cables",      precio: 210.0, oferta: false, imagen: "img/cable-mellizo.jpg" },
-      { id: 17, nombre: "Foco LED 12W luz fría",            categoria: "electricidad", subcategoria: "iluminacion", precio: 8.9,   oferta: true,  imagen: "img/foco-led.jpg" },
-      { id: 18, nombre: "Reflector LED 50W exterior",       categoria: "electricidad", subcategoria: "iluminacion", precio: 89.9,  oferta: false, imagen: "img/reflector.jpg" },
+      {
+        id: 15,
+        name: "Cable eléctrico 2x2.5mm rollo 100m",
+        shortDescription: "Cable para tomacorrientes y circuitos de potencia.",
+        descriptionLong: `
+          <strong>Cable 2x2.5mm</strong><br/>
+          Uso domiciliario y comercial, ideal para alimentación de tomacorrientes.
+        `,
+        usage: "Instalar según norma eléctrica vigente y por personal calificado.",
+        price: 349.0,
+        normalPrice: 379.0,
+        image: "img/cable.jpg",
+        categories: ["Electricidad", "Cables"],
+        categoria: "electricidad",
+        subcategoria: "cables",
+        oferta: true,
+        variants: [{ label: "Rollo 100m", color: "#22c55e" }]
+      },
+      {
+        id: 16,
+        name: "Cable mellizo 2x1.5mm rollo 100m",
+        shortDescription: "Cable para iluminación general.",
+        descriptionLong: `
+          <strong>Cable mellizo 2x1.5mm</strong><br/>
+          Recomendado para circuitos de iluminación interior.
+        `,
+        usage: "Instalar en ductos o canaletas según diseño eléctrico.",
+        price: 210.0,
+        normalPrice: 229.0,
+        image: "img/cable-mellizo.jpg",
+        categories: ["Electricidad", "Cables"],
+        categoria: "electricidad",
+        subcategoria: "cables",
+        oferta: false,
+        variants: [{ label: "Rollo 100m", color: "#4ade80" }]
+      },
+      {
+        id: 17,
+        name: "Foco LED 12W luz fría",
+        shortDescription: "Ahorro de energía y buena iluminación.",
+        descriptionLong: `
+          <strong>Foco LED 12W luz fría</strong><br/>
+          Ilumina ambientes con bajo consumo y larga duración.
+        `,
+        usage: "Enroscar en portalámparas compatible (E27).",
+        price: 8.9,
+        normalPrice: 10.5,
+        image: "img/foco-led.jpg",
+        categories: ["Electricidad", "Iluminación"],
+        categoria: "electricidad",
+        subcategoria: "iluminacion",
+        oferta: true,
+        variants: [
+          { label: "Luz fría", color: "#bfdbfe" },
+          { label: "Luz cálida", color: "#fed7aa" }
+        ]
+      },
+      {
+        id: 18,
+        name: "Reflector LED 50W exterior",
+        shortDescription: "Iluminación para patios y fachadas.",
+        descriptionLong: `
+          <strong>Reflector LED 50W</strong><br/>
+          Ideal para exteriores, patios y zonas de trabajo nocturno.
+        `,
+        usage: "Instalar en pared o estructura firme, con conexión segura.",
+        price: 89.9,
+        normalPrice: 99.9,
+        image: "img/reflector.jpg",
+        categories: ["Electricidad", "Iluminación"],
+        categoria: "electricidad",
+        subcategoria: "iluminacion",
+        oferta: false,
+        variants: [{ label: "IP65", color: "#60a5fa" }]
+      },
 
       // Gasfitería
-      { id: 19, nombre: "Tubo PVC desagüe 4\" x 3m",        categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 38.5,  oferta: false, imagen: "img/tubo.jpg" },
-      { id: 20, nombre: "Tee PVC 1/2\" presión",            categoria: "gasfiteria", subcategoria: "tuberias-pvc",   precio: 2.5,   oferta: false, imagen: "img/tee.jpg" },
-      { id: 21, nombre: "Grifo lavadero monocomando",       categoria: "gasfiteria", subcategoria: "griferia",       precio: 129.9, oferta: true,  imagen: "img/grifo.jpg" },
+      {
+        id: 19,
+        name: "Tubo PVC desagüe 4\" x 3m",
+        shortDescription: "Tubo para sistemas de desagüe domiciliario.",
+        descriptionLong: `
+          <strong>Tubo PVC desagüe 4&quot; x 3m</strong><br/>
+          Usado en instalaciones sanitarias de desagüe y ventilación.
+        `,
+        usage: "Instalar con accesorios y pegamento PVC adecuados.",
+        price: 38.5,
+        normalPrice: 42.9,
+        image: "img/tubo.jpg",
+        categories: ["Gasfitería", "Tuberías PVC"],
+        categoria: "gasfiteria",
+        subcategoria: "tuberias-pvc",
+        oferta: false,
+        variants: [{ label: "4\" x 3m", color: "#e5e7eb" }]
+      },
+      {
+        id: 20,
+        name: "Tee PVC 1/2\" presión",
+        shortDescription: "Accesorio para distribución de agua.",
+        descriptionLong: `
+          <strong>Tee PVC 1/2&quot; presión</strong><br/>
+          Permite derivar líneas de agua en instalaciones de agua fría.
+        `,
+        usage: "Usar con pegamento PVC presión.",
+        price: 2.5,
+        normalPrice: 3.0,
+        image: "img/tee.jpg",
+        categories: ["Gasfitería", "Tuberías PVC"],
+        categoria: "gasfiteria",
+        subcategoria: "tuberias-pvc",
+        oferta: false,
+        variants: [{ label: "1/2\"", color: "#e5e7eb" }]
+      },
+      {
+        id: 21,
+        name: "Grifo lavadero monocomando",
+        shortDescription: "Grifería moderna para cocina o baño.",
+        descriptionLong: `
+          <strong>Grifo lavadero monocomando</strong><br/>
+          Diseño moderno con mezclador de agua fría y caliente.
+        `,
+        usage: "Instalar con flexibles y sellos adecuados.",
+        price: 129.9,
+        normalPrice: 149.9,
+        image: "img/grifo.jpg",
+        categories: ["Gasfitería", "Grifería"],
+        categoria: "gasfiteria",
+        subcategoria: "griferia",
+        oferta: true,
+        variants: [{ label: "Cromado", color: "#e5e7eb" }]
+      },
 
       // Pinturas y acabados
-      { id: 22, nombre: "Pintura látex interior 1 galón blanco", categoria: "pinturas", subcategoria: "pinturas",    precio: 79.9,  oferta: false, imagen: "img/pintura.jpg" },
-      { id: 23, nombre: "Sellador acrílico 1 galón",        categoria: "pinturas", subcategoria: "pinturas",        precio: 69.9,  oferta: false, imagen: "img/sellador.jpg" },
-      { id: 24, nombre: "Rodillo para pintura 9\"",         categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 18.9, oferta: true,  imagen: "img/rodillo.jpg" },
-      { id: 25, nombre: "Brocha 2 1/2\" profesional",       categoria: "pinturas", subcategoria: "accesorios-pintura", precio: 12.5, oferta: false, imagen: "img/brocha.jpg" }
+      {
+        id: 22,
+        name: "Pintura látex interior 1 galón blanco",
+        shortDescription: "Pintura base agua para interiores.",
+        descriptionLong: `
+          <strong>Pintura látex interior 1 galón blanco</strong><br/>
+          Ideal para paredes y techos de interiores, acabado mate.
+        `,
+        usage: "Aplicar sobre superficie limpia y sellada.",
+        price: 79.9,
+        normalPrice: 89.9,
+        image: "img/pintura.jpg",
+        categories: ["Pinturas y acabados", "Pinturas"],
+        categoria: "pinturas",
+        subcategoria: "pinturas",
+        oferta: false,
+        variants: [{ label: "Blanco", color: "#f9fafb" }]
+      },
+      {
+        id: 23,
+        name: "Sellador acrílico 1 galón",
+        shortDescription: "Prepara la superficie antes de pintar.",
+        descriptionLong: `
+          <strong>Sellador acrílico 1 galón</strong><br/>
+          Mejora la adherencia de la pintura y uniformiza la absorción.
+        `,
+        usage: "Diluir según indicaciones y aplicar como primera mano.",
+        price: 69.9,
+        normalPrice: 79.9,
+        image: "img/sellador.jpg",
+        categories: ["Pinturas y acabados", "Pinturas"],
+        categoria: "pinturas",
+        subcategoria: "pinturas",
+        oferta: false,
+        variants: [{ label: "Transparente", color: "#e5e7eb" }]
+      },
+      {
+        id: 24,
+        name: "Rodillo para pintura 9\"",
+        shortDescription: "Rodillo para pintar paredes y techos.",
+        descriptionLong: `
+          <strong>Rodillo para pintura 9&quot;</strong><br/>
+          Facilita el pintado de grandes superficies con acabado uniforme.
+        `,
+        usage: "Usar con bandeja para pintura y limpieza después de uso.",
+        price: 18.9,
+        normalPrice: 22.9,
+        image: "img/rodillo.jpg",
+        categories: ["Pinturas y acabados", "Accesorios de pintura"],
+        categoria: "pinturas",
+        subcategoria: "accesorios-pintura",
+        oferta: true,
+        variants: [{ label: "Felpa mediana", color: "#fed7aa" }]
+      },
+      {
+        id: 25,
+        name: "Brocha 2 1/2\" profesional",
+        shortDescription: "Brocha para detalles y bordes.",
+        descriptionLong: `
+          <strong>Brocha 2 1/2&quot; profesional</strong><br/>
+          Ideal para bordes, marcos y zonas donde el rodillo no llega.
+        `,
+        usage: "Enjuagar bien antes del primer uso y limpiar tras cada jornada.",
+        price: 12.5,
+        normalPrice: 14.9,
+        image: "img/brocha.jpg",
+        categories: ["Pinturas y acabados", "Accesorios de pintura"],
+        categoria: "pinturas",
+        subcategoria: "accesorios-pintura",
+        oferta: false,
+        variants: [{ label: "Cerdas sintéticas", color: "#facc15" }]
+      }
     ];
 
     function getCart() {
@@ -1701,7 +2264,7 @@
     }
 
     function createSparkles(button) {
-      const colors = ["#fb8001", "#f8c013", "#9ca3af", "#ec4899"]; // naranja, dorado, gris, fucsia
+      const colors = ["#fb8001", "#f8c013", "#9ca3af", "#ec4899"];
 
       for (let i = 0; i < 8; i++) {
         const sparkle = document.createElement("span");
@@ -1711,7 +2274,7 @@
         sparkle.style.background = color;
 
         const angle = Math.random() * Math.PI * 2;
-        const distance = 24 + Math.random() * 22; // radio más amplio
+        const distance = 28 + Math.random() * 26; // más radio, fuera del botón
         const dx = Math.cos(angle) * distance;
         const dy = Math.sin(angle) * distance * -1;
 
@@ -1739,11 +2302,10 @@
       if (existing) {
         existing.qty += 1;
       } else {
-        cart.push({ id, qty: 1, price: product.precio });
+        cart.push({ id, qty: 1, price: product.price });
       }
       saveCart(cart);
 
-      // Animación de onda en el botón de carrito flotante
       const cartFab = document.querySelector(".cart-button-fab");
       if (cartFab) {
         cartFab.classList.remove("ping");
@@ -1792,7 +2354,7 @@
         const product = findProduct(item.id);
         if (!product) return;
         totalQty += item.qty;
-        totalAmount += product.precio * item.qty;
+        totalAmount += product.price * item.qty;
       });
       return { totalQty, totalAmount };
     }
@@ -1825,8 +2387,8 @@
         row.className = "cart-item";
         row.innerHTML = `
           <div>
-            <div class="cart-item-title">${product.nombre}</div>
-            <div class="cart-item-meta">S/ ${product.precio.toFixed(2)} c/u</div>
+            <div class="cart-item-title">${product.name}</div>
+            <div class="cart-item-meta">S/ ${product.price.toFixed(2)} c/u</div>
           </div>
           <div class="cart-item-controls">
             <button class="qty-btn" type="button" onclick="changeQty(${product.id}, -1)">-</button>
@@ -1860,7 +2422,7 @@
       cart.forEach((item) => {
         const product = findProduct(item.id);
         if (!product) return;
-        mensaje += `- ${product.nombre} (x${item.qty}) - S/ ${product.precio.toFixed(2)}%0A`;
+        mensaje += `- ${product.name} (x${item.qty}) - S/ ${product.price.toFixed(2)}%0A`;
       });
 
       const { totalAmount } = calcTotals(cart);
@@ -1886,7 +2448,64 @@
       window.open(url, "_blank");
     }
 
-    // Render catálogo con filtros de subcategorías
+    // Modal Ver más
+    function showProductModal(id) {
+      const product = findProduct(id);
+      if (!product) return;
+      const modal = document.getElementById("productModal");
+      const body = document.getElementById("productModalBody");
+      const cats = product.categories ? product.categories.join(" · ") : "";
+
+      const normal = product.normalPrice && product.normalPrice > product.price
+        ? ` <span class="product-price-normal">S/ ${product.normalPrice.toFixed(2)}</span>`
+        : "";
+
+      body.innerHTML = `
+        <div class="product-modal-header">
+          <h3>${product.name}</h3>
+          <span class="product-modal-category">${cats}</span>
+        </div>
+        <div class="product-modal-layout">
+          <div class="product-modal-image" style="background-image:url('${product.image}')"></div>
+          <div class="product-modal-info">
+            <p class="product-modal-short">${product.shortDescription || ""}</p>
+            <p class="product-modal-short">
+              <span class="product-price">S/ ${product.price.toFixed(2)}</span>${normal}
+              ${product.oferta ? '<span class="product-badge" style="margin-left:6px;">Oferta</span>' : ""}
+            </p>
+            <div class="product-modal-long">
+              ${product.descriptionLong || ""}
+            </div>
+            ${product.usage ? `<p class="product-modal-usage"><strong>Uso recomendado:</strong> ${product.usage}</p>` : ""}
+            ${
+              product.variants && product.variants.length
+                ? `<div class="product-modal-variants"><strong>Presentaciones:</strong> ${
+                    product.variants
+                      .map(
+                        (v) =>
+                          `<span class="variant-pill" style="--variant-color:${v.color || "#e5e7eb"}">${v.label}</span>`
+                      )
+                      .join("")
+                  }</div>`
+                : ""
+            }
+          </div>
+        </div>
+      `;
+      modal.classList.add("open");
+    }
+
+    function closeProductModal() {
+      document.getElementById("productModal").classList.remove("open");
+    }
+
+    function backdropClick(event) {
+      if (event.target.id === "productModal") {
+        closeProductModal();
+      }
+    }
+
+    // Render catálogo
     function renderProducts() {
       const grid = document.getElementById("productsGrid");
       const countLabel = document.getElementById("productCountLabel");
@@ -1906,12 +2525,12 @@
 
       let filtered = products.filter((p) => {
         if (promoActive && !p.oferta) return false;
-        if (minPriceVal && p.precio < minPriceVal) return false;
-        if (maxPriceInput && p.precio > maxPriceVal) return false;
+        if (minPriceVal && p.price < minPriceVal) return false;
+        if (maxPriceInput && p.price > maxPriceVal) return false;
 
         if (checkedSubs.length && !checkedSubs.includes(p.subcategoria)) return false;
 
-        const text = p.nombre.toLowerCase();
+        const text = (p.name || "").toLowerCase();
         if (search && !text.includes(search)) return false;
         if (globalSearch && !text.includes(globalSearch)) return false;
 
@@ -1919,11 +2538,11 @@
       });
 
       if (sortValue === "precio-asc") {
-        filtered.sort((a, b) => a.precio - b.precio);
+        filtered.sort((a, b) => a.price - b.price);
       } else if (sortValue === "precio-desc") {
-        filtered.sort((a, b) => b.precio - a.precio);
+        filtered.sort((a, b) => b.price - a.price);
       } else if (sortValue === "nombre-asc") {
-        filtered.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
       }
 
       grid.innerHTML = "";
@@ -1932,25 +2551,37 @@
           "<p style='font-size:0.9rem; color:#6b7280;'>No se encontraron productos con los filtros actuales.</p>";
       } else {
         filtered.forEach((p) => {
+          const normal =
+            p.normalPrice && p.normalPrice > p.price
+              ? `<span class="product-price-normal">S/ ${p.normalPrice.toFixed(2)}</span>`
+              : "";
+
           const card = document.createElement("article");
           card.className = "product-card";
           card.innerHTML = `
             <div class="product-added-label">Añadido ✓</div>
-            <div class="product-image" style="background-image:url('${p.imagen}')"></div>
-            <div class="product-name">${p.nombre}</div>
-            <div class="product-category">Categoría: ${p.categoria}</div>
+            <div class="product-image" style="background-image:url('${p.image}')"></div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-category">${p.categories ? p.categories.join(" · ") : ""}</div>
+            <div class="product-short">${p.shortDescription || ""}</div>
             <div class="product-price-row">
-              <span class="product-price">S/ ${p.precio.toFixed(2)}</span>
+              <span class="product-price">S/ ${p.price.toFixed(2)}</span>
+              ${normal}
               ${p.oferta ? '<span class="product-badge">Oferta</span>' : ""}
             </div>
             <div class="product-cta">
               <button class="btn-add" type="button">
                 <span>🛒 Agregar</span>
               </button>
+              <button class="btn-secondary btn-more" type="button">
+                Ver más
+              </button>
             </div>
           `;
-          const btn = card.querySelector(".btn-add");
-          btn.addEventListener("click", (ev) => addToCart(p.id, btn, ev));
+          const btnAdd = card.querySelector(".btn-add");
+          const btnMore = card.querySelector(".btn-more");
+          btnAdd.addEventListener("click", (ev) => addToCart(p.id, btnAdd, ev));
+          btnMore.addEventListener("click", () => showProductModal(p.id));
           grid.appendChild(card);
         });
       }
@@ -1992,7 +2623,6 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Acordeón de categorías
       document.querySelectorAll(".category-toggle").forEach((btn) => {
         btn.addEventListener("click", () => {
           const item = btn.closest(".category-item");
@@ -2000,20 +2630,17 @@
         });
       });
 
-      // Checkboxes subcategorías
       document
         .querySelectorAll(".subcategory-list input[type='checkbox']")
         .forEach((cb) => {
           cb.addEventListener("change", renderProducts);
         });
 
-      // Chip promo
       document.getElementById("promoChip").addEventListener("click", (e) => {
         e.currentTarget.classList.toggle("active");
         renderProducts();
       });
 
-      // Filtros de texto, precio y orden
       ["minPrice", "maxPrice", "searchInput", "globalSearch", "sortSelect"].forEach((id) => {
         const el = document.getElementById(id);
         if (!el) return;
